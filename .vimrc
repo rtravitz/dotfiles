@@ -62,9 +62,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'fatih/vim-go'
-Plugin 'fatih/molokai'
-Plugin 'jiangmiao/auto-pairs'
 Plugin 'pangloss/vim-javascript'
+Plugin 'mhartington/oceanic-next'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet-snippets'
@@ -99,9 +99,6 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_fmt_command = "goimports"
 
-"CtrlP
-set wildignore+=*/node_modules/*
-
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
   let l:file = expand('%')
@@ -113,15 +110,34 @@ function! s:build_go_files()
 endfunction
 
 "===============================================
+"Search
+"===============================================
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+"===============================================
 "Colorscheme
 "===============================================
-set background=dark
-let g:rehash256 = 1
-let g:molokai_original = 1
-colorscheme molokai
-hi Normal ctermbg=none
-hi NonText ctermbg=none
-hi LineNr ctermbg=none
+"set background=dark
+"let g:rehash256 = 1
+"let g:molokai_original = 1
+syntax enable
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+colorscheme OceanicNext
 
 "===============================================
 "Maps
