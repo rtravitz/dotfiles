@@ -26,6 +26,7 @@ alias lab='cd ~/workspace/lab'
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.config/nvim/init.vim'
 alias alac='nvim ~/.config/alacritty/alacritty.yml'
+alias dotfiles='cd ~/workspace/dotfiles'
 
 #=================
 # Go

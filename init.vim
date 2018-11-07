@@ -31,6 +31,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline'
@@ -83,6 +84,9 @@ let g:ale_fixers = { 'javascript': ['eslint'] }
 
 "vim-jsx
 let g:jsx_ext_required = 0
+
+"vim-markdown
+let g:markdown_fenced_languages = ['javascript', 'go']
 
 "==================
 " Maps
