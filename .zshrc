@@ -50,3 +50,5 @@ export PATH=$PATH:/Users/rtravitz/.cargo/bin
 # Secrets
 #=================
 source ~/.secrets
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

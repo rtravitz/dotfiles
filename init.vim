@@ -1,11 +1,11 @@
 "==================
-" Basics
+"Basics
 "==================
+let mapleader = "," "set comma as leader
 set encoding=utf-8 "encoding is utf 8
 set fileencoding=utf-8 "file encoding is utf 8
 set number "enable line numbers
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab "tabs and indentation
-let mapleader = "," "set comma as leader
 set shortmess=I "don't show the splash screen on startup
 set nobackup "get rid of swp files
 set timeoutlen=1000 ttimeoutlen=50 "lower timeout for keycode delays
@@ -13,52 +13,50 @@ set nowrap "do not wrap lines
 autocmd VimResized * wincmd = "keep pane splits equal sizes
 
 "==================
-" Plugins
+"Plugins
 "==================
-filetype off "required for vundle
-"set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-"let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-"begin plugins
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'fatih/vim-go'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mhartington/oceanic-next'
-Plugin 'mxw/vim-jsx'
-Plugin 'pangloss/vim-javascript'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline'
-Plugin 'w0rp/ale'
-"end plugins
-call vundle#end()
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'kien/ctrlp.vim'
+Plug 'mhartington/oceanic-next'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'w0rp/ale'
+call plug#end()
 
 "==================
-" Themes
+"Themes
 "==================
 filetype plugin indent on
 if (has("termguicolors"))
     set termguicolors
 endif
+
 colorscheme OceanicNext
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 
 "==================
-" Plugin Options
+"Plugin Options
 "==================
 
-" Airline
+"Airline
 let g:airline_theme='oceanicnext'
 let g:airline#extensions#tabline#enabled = 1 "airline buffer tabs
 
-" Nerdtree
+"Nerdtree
 let NERDTreeShowHidden=1 "nerdtree show hidden
 
 "Vim Go
@@ -71,11 +69,11 @@ let g:go_fmt_command = "goimports"
 
 "Ag
 if executable('ag')
-  " Use ag over grep
+  "Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  "Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  " ag is fast enough that CtrlP doesn't need to cache
+  "ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
 
@@ -85,35 +83,48 @@ let g:ale_fixers = { 'javascript': ['eslint'] }
 "vim-jsx
 let g:jsx_ext_required = 0
 
-"vim-markdown
-let g:markdown_fenced_languages = ['javascript', 'go']
+"splitjoin
+let g:splitjoin_trailing_comma = 1
 
 "==================
-" Maps
+"Maps
 "==================
-nmap <leader>f :CtrlP<cr>
-nmap <leader>e <Plug>(ale_fix)
-nmap \ :NERDTreeToggle<cr>
+let g:ctrlp_map = '<leader>f'
+nnoremap \ :NERDTreeToggle<cr>
+nnoremap <leader>af <Plug>(ale_fix)
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+"Navigate quickfix list
+noremap <c-n> :cnext<cr>
+noremap <c-p> :cprevious<cr>
+nnoremap <leader>ef :cclose<cr>
 
 "Bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<cr>:cw<cr>
 
 "Change vimsplit navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-"Navigate quickfix list
-map <C-n> :cnext<cr>
-map <C-m> :cprevious<cr>
-nnoremap <leader>a :cclose<cr>
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+nnoremap <c-l> <c-w><c-l>
+nnoremap <c-h> <c-w><c-h>
 
 "Node
-nnoremap <leader>rt :Dispatch npm test<cr>
+autocmd FileType javascript nnoremap <leader>t :exe '!npm test ' expand('%:t:r:r') . '.test'<cr>
+autocmd FileType javascript nnoremap <leader>ta :!npm test<cr>
+autocmd FileType javascript nnoremap <leader>tc :!npm run coverage<cr>
 
 "Golang
-autocmd FileType go nmap <leader>gr  <Plug>(go-run)
-autocmd FileType go nmap <leader>gt  <Plug>(go-test)
-autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<cr>
-autocmd FileType go nmap <leader>gc <Plug>(go-coverage-toggle)
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
