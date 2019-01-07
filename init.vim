@@ -23,6 +23,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'kien/ctrlp.vim'
 Plug 'mhartington/oceanic-next'
@@ -30,6 +31,7 @@ Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
@@ -83,6 +85,9 @@ let g:ale_fixers = { 'javascript': ['eslint'] }
 "vim-jsx
 let g:jsx_ext_required = 0
 
+"vim-markdown
+let g:markdown_fenced_languages = ['javascript', 'go']
+
 "splitjoin
 let g:splitjoin_trailing_comma = 1
 
@@ -107,6 +112,10 @@ nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
 nnoremap <c-h> <c-w><c-h>
+
+"Markdown
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd FileType markdown set wrap
 
 "Node
 autocmd FileType javascript nnoremap <leader>t :exe '!npm test ' expand('%:t:r:r') . '.test'<cr>
