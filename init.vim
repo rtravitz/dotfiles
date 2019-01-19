@@ -1,6 +1,5 @@
-"==================
 "Basics
-"==================
+"================== {{{
 let mapleader = "," "set comma as leader
 set encoding=utf-8 "encoding is utf 8
 set fileencoding=utf-8 "file encoding is utf 8
@@ -10,15 +9,17 @@ set shortmess=I "don't show the splash screen on startup
 set nobackup "get rid of swp files
 set timeoutlen=1000 ttimeoutlen=50 "lower timeout for keycode delays
 set nowrap "do not wrap lines
-autocmd VimResized * wincmd = "keep pane splits equal sizes
+"}}}
 
-"==================
 "Plugins
-"==================
+"================== {{{
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  augroup plug_auto_install
+    autocmd!
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  augroup END
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -37,22 +38,10 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 call plug#end()
+"}}}
 
-"==================
-"Themes
-"==================
-filetype plugin indent on
-if (has("termguicolors"))
-    set termguicolors
-endif
-
-colorscheme OceanicNext
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
-
-"==================
 "Plugin Options
-"==================
+"================== {{{
 
 "Airline
 let g:airline_theme='oceanicnext'
@@ -90,18 +79,36 @@ let g:markdown_fenced_languages = ['javascript', 'go']
 
 "splitjoin
 let g:splitjoin_trailing_comma = 1
+"}}}
 
-"==================
+"Appearance
+"=================={{{
+augroup pane_splits
+  autocmd!
+  autocmd VimResized * wincmd = "keep pane splits equal sizes
+augroup END
+
+filetype plugin indent on
+if (has("termguicolors"))
+    set termguicolors
+endif
+
+colorscheme OceanicNext
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+"}}}
+
 "Maps
-"==================
+"=================={{{
 let g:ctrlp_map = '<leader>f'
 nnoremap \ :NERDTreeToggle<cr>
 nnoremap <leader>af <Plug>(ale_fix)
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
 "Navigate quickfix list
-noremap <c-n> :cnext<cr>
-noremap <c-p> :cprevious<cr>
+nnoremap <c-n> :cnext<cr>
+nnoremap <c-p> :cprevious<cr>
 nnoremap <leader>ef :cclose<cr>
 
 "Bind K to grep word under cursor
@@ -113,16 +120,35 @@ nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
 nnoremap <c-h> <c-w><c-h>
 
+"Languages
+"==================
+
+"Vimscript
+"------------------
+augroup filetype_vim
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
 "Markdown
-autocmd BufNewFile,BufRead *.md set filetype=markdown
-autocmd FileType markdown set wrap
+"------------------
+augroup filetype_markdown
+  autocmd!
+  autocmd BufNewFile,BufRead *.md set filetype=markdown
+  autocmd FileType markdown set wrap
+augroup END
 
 "Node
-autocmd FileType javascript nnoremap <leader>t :exe '!npm test ' expand('%:t:r:r') . '.test'<cr>
-autocmd FileType javascript nnoremap <leader>ta :!npm test<cr>
-autocmd FileType javascript nnoremap <leader>tc :!npm run coverage<cr>
+"------------------
+augroup filetype_javascript
+  autocmd!
+  autocmd FileType javascript nnoremap <leader>t :exe '!npm test ' expand('%:t:r:r') . '.test'<cr>
+  autocmd FileType javascript nnoremap <leader>ta :!npm test<cr>
+  autocmd FileType javascript nnoremap <leader>tc :!npm run coverage<cr>
+augroup END
 
 "Golang
+"------------------
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
   let l:file = expand('%')
@@ -133,7 +159,11 @@ function! s:build_go_files()
   endif
 endfunction
 
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-autocmd FileType go nmap <leader>t <Plug>(go-test)
-autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+augroup filetype_go
+  autocmd!
+  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+  autocmd FileType go nmap <leader>t <Plug>(go-test)
+  autocmd FileType go nmap <leader>r <Plug>(go-run)
+  autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+augroup END
+"}}}
