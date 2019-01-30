@@ -1,14 +1,53 @@
-"Basics
+"Settings
 "================== {{{
-let mapleader = "," "set comma as leader
-set encoding=utf-8 "encoding is utf 8
-set fileencoding=utf-8 "file encoding is utf 8
-set number "enable line numbers
-set tabstop=2 shiftwidth=2 softtabstop=2 expandtab "tabs and indentation
-set shortmess=I "don't show the splash screen on startup
-set nobackup "get rid of swp files
-set timeoutlen=1000 ttimeoutlen=50 "lower timeout for keycode delays
-set nowrap "do not wrap lines
+set nocompatible                "be iMproved, required
+set shortmess=I                 "No splash screen
+set number                      "Enable line numbers
+set backspace=indent,eol,start  "Makes backspace key more powerful
+set showcmd                     "Show me what I am typing
+set showmode                    "Show current mode
+set noswapfile                  "Don't use swapfile
+set nobackup                    "Don't create backup files
+set splitright                  "Split vertical windows right to current
+set splitbelow                  "Split horizontal windows below current
+set encoding=utf-8              "Set default encoding to UTF-8
+set autoread                    "Automatically reread changed files without asking
+set hidden                      "Hide buffer instead of closing to allow unwritten changes
+set noshowmode                  "Show mode with airline instead
+set lazyredraw                  "Wait to redraw when running non-typed commands (ex. macros)
+
+"Wrap
+set wrap                        "Wrap lines
+set textwidth=79
+set formatoptions=qrn1
+
+"Tabs
+set tabstop=2
+set shiftwidth=2 
+set softtabstop=2 
+set expandtab
+
+"Search
+set incsearch                   "Show match while typing
+set hlsearch                    "Highlight found searches
+set ignorecase                  "Search case insensitive
+set smartcase                   " ...except when pattern contains uppercase characters 
+
+"Timeouts
+set notimeout                   "Time out on keycodes but not mappings
+set ttimeout                    
+set ttimeoutlen=10              
+
+"Mouse
+if has('mouse')
+  set mouse=a
+endif
+
+"Open help vertically
+command! -nargs=* -complete=help Help vertical belowright help <args>
+autocmd FileType help wincmd L
+
+let mapleader = "," "Comma as leader
 "}}}
 
 "Plugins
@@ -48,10 +87,12 @@ let g:airline_theme='oceanicnext'
 let g:airline#extensions#tabline#enabled = 1 "airline buffer tabs
 
 "Nerdtree
-let NERDTreeShowHidden=1 "nerdtree show hidden
+let NERDTreeShowHidden = 1 "nerdtree show hidden
+
+"Nerdcommenter
+let g:NERDSpaceDelims = 1
 
 "Vim Go
-set autowrite
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -102,7 +143,7 @@ let g:oceanic_next_terminal_italic = 1
 "=================={{{
 let g:ctrlp_map = '<leader>f'
 nnoremap \ :NERDTreeToggle<cr>
-nnoremap <leader>af <Plug>(ale_fix)
+nmap <leader>af <Plug>(ale_fix)
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
@@ -119,6 +160,10 @@ nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
 nnoremap <c-h> <c-w><c-h>
+
+"Buffer prev/next
+nnoremap <c-x> :bnext<cr>
+nnoremap <c-z> :bprev<cr>
 
 "Languages
 "==================
@@ -165,5 +210,11 @@ augroup filetype_go
   autocmd FileType go nmap <leader>t <Plug>(go-test)
   autocmd FileType go nmap <leader>r <Plug>(go-run)
   autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <leader>s <Plug>(go-def-split)
+  autocmd FileType go nmap <leader>v <Plug>(go-def-vertical)
+  autocmd FileType go nmap <leader>i <Plug>(go-info)
+  autocmd FileType go nmap <leader>d <Plug>(go-doc)
+  autocmd FileType go nmap <leader>n <Plug>(go-rename)
 augroup END
 "}}}
+
