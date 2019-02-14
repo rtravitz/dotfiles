@@ -17,15 +17,16 @@ set noshowmode                  "Show mode with airline instead
 set lazyredraw                  "Wait to redraw when running non-typed commands (ex. macros)
 
 "Wrap
-set wrap                        "Wrap lines
+set nowrap                      "No wrapping lines
 set textwidth=79
-set formatoptions=qrn1
 
 "Tabs
 set tabstop=2
 set shiftwidth=2 
 set softtabstop=2 
 set expandtab
+
+filetype plugin indent on
 
 "Search
 set incsearch                   "Show match while typing
@@ -44,10 +45,11 @@ if has('mouse')
 endif
 
 "Open help vertically
-command! -nargs=* -complete=help Help vertical belowright help <args>
-autocmd FileType help wincmd L
+"command! -nargs=* -complete=help Help vertical belowright help <args>
+"autocmd FileType help wincmd L
 
 let mapleader = "," "Comma as leader
+let maplocalleader="," "Comma as localleader
 "}}}
 
 "Plugins
@@ -129,7 +131,6 @@ augroup pane_splits
   autocmd VimResized * wincmd = "keep pane splits equal sizes
 augroup END
 
-filetype plugin indent on
 if (has("termguicolors"))
     set termguicolors
 endif
@@ -164,57 +165,5 @@ nnoremap <c-h> <c-w><c-h>
 "Buffer prev/next
 nnoremap <c-x> :bnext<cr>
 nnoremap <c-z> :bprev<cr>
-
-"Languages
-"==================
-
-"Vimscript
-"------------------
-augroup filetype_vim
-  autocmd!
-  autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
-"Markdown
-"------------------
-augroup filetype_markdown
-  autocmd!
-  autocmd BufNewFile,BufRead *.md set filetype=markdown
-  autocmd FileType markdown set wrap
-augroup END
-
-"Node
-"------------------
-augroup filetype_javascript
-  autocmd!
-  autocmd FileType javascript nnoremap <leader>t :exe '!npm test ' expand('%:t:r:r') . '.test'<cr>
-  autocmd FileType javascript nnoremap <leader>ta :!npm test<cr>
-  autocmd FileType javascript nnoremap <leader>tc :!npm run coverage<cr>
-augroup END
-
-"Golang
-"------------------
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-augroup filetype_go
-  autocmd!
-  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-  autocmd FileType go nmap <leader>t <Plug>(go-test)
-  autocmd FileType go nmap <leader>r <Plug>(go-run)
-  autocmd FileType go nmap <leader>c <Plug>(go-coverage-toggle)
-  autocmd FileType go nmap <leader>s <Plug>(go-def-split)
-  autocmd FileType go nmap <leader>v <Plug>(go-def-vertical)
-  autocmd FileType go nmap <leader>i <Plug>(go-info)
-  autocmd FileType go nmap <leader>d <Plug>(go-doc)
-  autocmd FileType go nmap <leader>n <Plug>(go-rename)
-augroup END
 "}}}
 
