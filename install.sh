@@ -31,10 +31,19 @@ sysAlac="$HOME/.config/alacritty/alacritty.yml"
 create_link $dotAlac $sysAlac
 
 #===========================================
+#Git
+#===========================================
+mkdir -p $HOME/.config/git
+
+dotGit="$PWD/gitconfig"
+sysGit="$HOME/.config/git/config"
+create_link $dotGit $sysGit
+
+#===========================================
 #Zsh
 #===========================================
 dotZsh="$PWD/zshrc"
-sysZsh="$HOME/.config/nvim"
+sysZsh="$HOME/.zshrc"
 create_link $dotZsh $sysZsh
 
 #===========================================
