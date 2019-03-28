@@ -7,4 +7,5 @@ This repo holds my configuration files for some of my frequently used tools:
 * [Git](https://git-scm.com/)
 * [Zsh](https://ohmyz.sh/)
 
-They can be installed by executing `install.sh`.
+Executing `install.sh` from within the project directory will symlink its contents to the appropriate locations on OSX.
+*Beware*: The symlink uses -f and will overwrite any file or directory currently at the destination.
