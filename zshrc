@@ -34,6 +34,11 @@ alias dotfiles='cd ~/workspace/dotfiles'
 alias workspace='cd ~/workspace'
 
 #=================
+# Work
+#=================
+alias mfa="source $HOME/workspace/devops/utilities/issue_mfa.sh Ryan.Travitz"
+
+#=================
 # Go
 #=================
 export GOROOT=/usr/local/go

@@ -18,7 +18,6 @@ set lazyredraw                  "Wait to redraw when running non-typed commands 
 
 "Wrap
 set nowrap                      "No wrapping lines
-set textwidth=79
 
 "Tabs
 set tabstop=2
@@ -68,6 +67,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'kien/ctrlp.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'mhartington/oceanic-next'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'

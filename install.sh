@@ -13,13 +13,20 @@ echo -e "Creating directories and symlinks...\n"
 #===========================================
 mkdir -p $HOME/.config/nvim
 
-dotVim="$PWD/vim"
-sysVim="$HOME/.config/nvim"
-create_link $dotVim $sysVim
+#after
+dot="$PWD/vim/after"
+sys="$HOME/.config/nvim/after"
+create_link $dot $sys
 
-dotVimrc="$PWD/vimrc"
-sysVimrc="$HOME/.config/nvim/init.vim"
-create_link $dotVimrc $sysVimrc
+#ftdetect
+dot="$PWD/vim/ftdetect"
+sys="$HOME/.config/nvim/ftdetect"
+create_link $dot $sys
+
+#vimrc
+dot="$PWD/vimrc"
+sys="$HOME/.config/nvim/init.vim"
+create_link $dot $sys
 
 #===========================================
 #Alacritty
