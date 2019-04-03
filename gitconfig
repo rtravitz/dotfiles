@@ -1,3 +1,5 @@
 [user]
 	name = Ryan Travitz
 	email = rtravitz@gmail.com
+[pager]
+	branch = false
