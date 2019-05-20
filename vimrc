@@ -1,5 +1,6 @@
+"===============
 "Settings
-"================== {{{
+"===============
 set nocompatible                "be iMproved, required
 set shortmess=I                 "No splash screen
 set number                      "Enable line numbers
@@ -49,10 +50,10 @@ endif
 
 let mapleader = "," "Comma as leader
 let maplocalleader="," "Comma as localleader
-"}}}
 
+"===============
 "Plugins
-"================== {{{
+"===============
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -79,10 +80,8 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 call plug#end()
-"}}}
 
 "Plugin Options
-"================== {{{
 
 "Airline
 let g:airline_theme='oceanicnext'
@@ -122,10 +121,10 @@ let g:markdown_fenced_languages = ['javascript', 'go']
 
 "splitjoin
 let g:splitjoin_trailing_comma = 1
-"}}}
 
+"===============
 "Appearance
-"=================={{{
+"===============
 augroup pane_splits
   autocmd!
   autocmd VimResized * wincmd = "keep pane splits equal sizes
@@ -138,10 +137,10 @@ endif
 colorscheme OceanicNext
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
-"}}}
 
+"===============
 "Maps
-"=================={{{
+"===============
 let g:ctrlp_map = '<leader>f'
 nnoremap \ :NERDTreeToggle<cr>
 nmap <leader>af <Plug>(ale_fix)
@@ -165,5 +164,4 @@ nnoremap <c-h> <c-w><c-h>
 "Buffer prev/next
 nnoremap <c-x> :bnext<cr>
 nnoremap <c-z> :bprev<cr>
-"}}}
 
