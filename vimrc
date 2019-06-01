@@ -64,7 +64,6 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'kien/ctrlp.vim'
@@ -77,6 +76,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 call plug#end()
@@ -111,13 +112,13 @@ if executable('ag')
 endif
 
 "Ale
-let g:ale_fixers = { 'javascript': ['eslint'] }
+let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'] }
 
 "vim-jsx
 let g:jsx_ext_required = 0
 
 "vim-markdown
-let g:markdown_fenced_languages = ['javascript', 'go']
+let g:markdown_fenced_languages = ['javascript', 'go', 'ruby']
 
 "splitjoin
 let g:splitjoin_trailing_comma = 1
@@ -164,4 +165,3 @@ nnoremap <c-h> <c-w><c-h>
 "Buffer prev/next
 nnoremap <c-x> :bnext<cr>
 nnoremap <c-z> :bprev<cr>
-
