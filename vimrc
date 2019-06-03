@@ -66,6 +66,7 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'kien/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'mhartington/oceanic-next'
@@ -163,5 +164,12 @@ nnoremap <c-l> <c-w><c-l>
 nnoremap <c-h> <c-w><c-h>
 
 "Buffer prev/next
-nnoremap <c-x> :bnext<cr>
-nnoremap <c-z> :bprev<cr>
+nnoremap Ω :bprev<cr>
+nnoremap ≈ :bnext<cr>
+
+noremap ≠ :vertical resize +10<cr>
+noremap – :vertical resize -10<cr>
+
+"Experimental -> Send a test command to a second tmux pane.
+nnoremap <F5> :exe ":silent ! tmux send-keys -t 2 'ginkgo -r' Enter"<CR>
+

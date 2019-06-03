@@ -77,5 +77,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # Secrets
 #=================
 source ~/.secrets
-source ~/workspace/ryan/dotfiles/dept-vets-affairs
+
+VETS_PATH=~/workspace/ryan/dotfiles/dept-vets-affairs
+if test -f "$VETS_PATH"; then
+  source $VETS_PATH
+fi
 
