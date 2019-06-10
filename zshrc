@@ -47,6 +47,25 @@ alias adhoc="cd $HOME/workspace/adhoc"
 alias homework="cd $HOME/workspace/adhoc/homework_answers"
 alias vslcsp="bash $HOME/workspace/adhoc/homework_answers/assignments/slcsp/validate.sh"
 
+grade() {
+  grading_dir="$HOME/workspace/adhoc/grading"
+  echo "Deleting current grading directory: $grading_dir"
+  rm -rf "$grading_dir"
+
+  echo "Making new grading directory: $grading_dir"
+  mkdir $grading_dir
+
+  new_download=$(ls -lt ~/Downloads | tail -n +2 | head -1 | awk '{print $9}')
+  echo "Moving $new_download to $grading_dir"
+  mv ~/Downloads/$new_download $grading_dir
+
+  echo "Unzipping..."
+  cd $grading_dir
+  unzip $new_download
+
+  echo "Done!"
+}
+
 #=================
 # Go
 #=================
