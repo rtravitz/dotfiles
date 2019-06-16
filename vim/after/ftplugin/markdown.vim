@@ -1,2 +1,2 @@
-set wrap
+set wrap linebreak
 
