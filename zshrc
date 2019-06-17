@@ -43,9 +43,12 @@ alias alac='nvim ~/.config/alacritty/alacritty.yml'
 #=================
 # Ad Hoc
 #=================
+HOMEWORK_DIR="$HOME/workspace/adhoc/homework_answers"
+
 alias adhoc="cd $HOME/workspace/adhoc"
-alias homework="cd $HOME/workspace/adhoc/homework_answers"
-alias vslcsp="bash $HOME/workspace/adhoc/homework_answers/assignments/slcsp/validate.sh"
+alias homework="cd $HOMEWORK_DIR"
+alias vslcsp="bash $HOMEWORK_DIR/assignments/slcsp/validate.sh"
+alias vproto="cat $HOMEWORK_DIR/assignments/proto/answers"
 
 grade() {
   grading_dir="$HOME/workspace/adhoc/grading"
