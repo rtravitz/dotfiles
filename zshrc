@@ -2,7 +2,7 @@
 # ZSH
 #=================
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="lambda"
+ZSH_THEME="fishy"
 
 #=================
 # Plugins
@@ -19,6 +19,8 @@ source $ZSH/oh-my-zsh.sh
 #=================
 # General
 #=================
+export EDITOR='/usr/local/bin/nvim'
+
 alias dotfiles='cd ~/workspace/ryan/dotfiles'
 alias workspace='cd ~/workspace'
 alias lab='cd ~/workspace/lab'
@@ -39,6 +41,7 @@ alias zs='source ~/.zshrc'
 alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.config/nvim/init.vim'
 alias alac='nvim ~/.config/alacritty/alacritty.yml'
+function regex { perl -n -e "/$1/ && printf \"%s\n\", "'$1' }
 
 #=================
 # Ad Hoc
@@ -49,6 +52,7 @@ alias adhoc="cd $HOME/workspace/adhoc"
 alias homework="cd $HOMEWORK_DIR"
 alias vslcsp="bash $HOMEWORK_DIR/assignments/slcsp/validate.sh"
 alias vproto="cat $HOMEWORK_DIR/assignments/proto/answers"
+alias cpproto="cp $HOMEWORK_DIR/assignments/proto/txnlog.dat ."
 
 grade() {
   grading_dir="$HOME/workspace/adhoc/grading"
@@ -105,3 +109,5 @@ if test -f "$VETS_PATH"; then
   source $VETS_PATH
 fi
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
