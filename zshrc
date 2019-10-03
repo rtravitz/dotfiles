@@ -2,7 +2,7 @@
 # ZSH
 #=================
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="fishy"
+ZSH_THEME="ryan"
 
 #=================
 # Plugins
@@ -42,11 +42,14 @@ alias zshrc='nvim ~/.zshrc'
 alias vimrc='nvim ~/.config/nvim/init.vim'
 alias alac='nvim ~/.config/alacritty/alacritty.yml'
 function regex { perl -n -e "/$1/ && printf \"%s\n\", "'$1' }
+alias vbr="git reflog | grep -o \"checkout: moving from .* to \" |\
+    sed -e 's/checkout: moving from //' -e 's/ to $//' | head -10 | grep -v 'master'"
+alias del-merged='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
 
 #=================
 # Ad Hoc
 #=================
-HOMEWORK_DIR="$HOME/workspace/adhoc/homework_answers"
+HOMEWORK_DIR="$HOME/workspace/adhoc/homework/homework_answers"
 
 alias adhoc="cd $HOME/workspace/adhoc"
 alias homework="cd $HOMEWORK_DIR"
@@ -55,7 +58,7 @@ alias vproto="cat $HOMEWORK_DIR/assignments/proto/answers"
 alias cpproto="cp $HOMEWORK_DIR/assignments/proto/txnlog.dat ."
 
 grade() {
-  grading_dir="$HOME/workspace/adhoc/grading"
+  grading_dir="$HOME/workspace/adhoc/homework/grading"
   echo "Deleting current grading directory: $grading_dir"
   rm -rf "$grading_dir"
 

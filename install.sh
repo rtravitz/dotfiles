@@ -2,7 +2,7 @@
 
 create_link() {
   echo -e "Linking $1 -> $2"
-  ln -sf $1 $2
+  ln -sfF $1 $2
 }
 
 # Create symlinks, overwriting current
@@ -33,31 +33,38 @@ create_link $dot $sys
 #===========================================
 mkdir -p $HOME/.config/alacritty
 
-dotAlac="$PWD/alacritty.yml"
-sysAlac="$HOME/.config/alacritty/alacritty.yml"
-create_link $dotAlac $sysAlac
+dot="$PWD/alacritty.yml"
+sys="$HOME/.config/alacritty/alacritty.yml"
+create_link $dot $sys
 
 #===========================================
 #Git
 #===========================================
 mkdir -p $HOME/.config/git
 
-dotGit="$PWD/gitconfig"
-sysGit="$HOME/.config/git/config"
-create_link $dotGit $sysGit
+dot="$PWD/gitconfig"
+sys="$HOME/.config/git/config"
+create_link $dot $sys
 
 #===========================================
 #Zsh
 #===========================================
-dotZsh="$PWD/zshrc"
-sysZsh="$HOME/.zshrc"
-create_link $dotZsh $sysZsh
+dot="$PWD/zshrc"
+sys="$HOME/.zshrc"
+create_link $dot $sys
+
+#===========================================
+#Oh My Zsh
+#===========================================
+dot="$PWD/ryan.zsh-theme"
+sys="$HOME/.oh-my-zsh/custom/themes/ryan.zsh-theme"
+create_link $dot $sys
 
 #===========================================
 #Tmux
 #===========================================
-dotTmux="$PWD/tmux.conf"
-sysTmux="$HOME/.tmux.conf"
-create_link $dotTmux $sysTmux
+dot="$PWD/tmux.conf"
+sys="$HOME/.tmux.conf"
+create_link $dot $sys
 
 echo "Dotfile install complete!"
