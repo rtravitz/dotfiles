@@ -149,6 +149,8 @@ nnoremap \ :NERDTreeToggle<cr>
 nmap <leader>af <Plug>(ale_fix)
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+"Format json file
+nnoremap <leader>j :%!jq ''<CR>
 
 "Navigate quickfix list
 nnoremap <c-n> :cnext<cr>
@@ -172,5 +174,5 @@ noremap ≠ :vertical resize +10<cr>
 noremap – :vertical resize -10<cr>
 
 "Experimental -> Send a test command to a second tmux pane.
-nnoremap <F5> :exe ":silent ! tmux send-keys -t 2 'ginkgo -r' Enter"<CR>
+nnoremap <leader>rt :exe ":silent ! tmux send-keys -t 2 'be rspec %' Enter" \| redraw!<CR>
 
