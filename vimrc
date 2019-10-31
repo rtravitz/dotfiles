@@ -1,7 +1,7 @@
 "===============
 "Settings
 "===============
-set nocompatible                "be iMproved, required
+set nocompatible                "be iMproved, required 
 set shortmess=I                 "No splash screen
 set number                      "Enable line numbers
 set backspace=indent,eol,start  "Makes backspace key more powerful
@@ -67,6 +67,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'mhartington/oceanic-next'
@@ -86,44 +88,88 @@ call plug#end()
 
 "Plugin Options
 
+"--------
 "Airline
+"--------
 let g:airline_theme='oceanicnext'
 let g:airline#extensions#tabline#enabled = 1 "airline buffer tabs
 
+"--------
 "Nerdtree
+"--------
 let NERDTreeShowHidden = 1 "nerdtree show hidden
 
+"--------
 "Nerdcommenter
+"--------
 let g:NERDSpaceDelims = 1
 
+"--------
 "Vim Go
+"--------
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-let g:go_fmt_command = "goimports"
 
-"Ag
-if executable('ag')
-  "Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-  "Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  "ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
+" Tell vim-go to use gopls instead of guru, since guru doesn't seem to be
+" module-aware. Some useful docs on `gd`:
+"
+" By default there is the Vim shortcut ctrl-o that jumps to the previous
+" cursor location. It works great when it does, but not good enough if you're
+" navigating between Go declarations. If, for example, you jump to a file with
+" :GoDef and then scroll down to the bottom, and then maybe to the top, ctrl-o
+" will remember these locations as well...
 
+" And because this is also used so many times we have the shortcut ctrl-t
+
+" https://github.com/fatih/vim-go-tutorial#go-to-definition
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
+" Turn off go-vim completion, let's try out ALE first. RN they're fighting
+" with each other.
+let g:go_code_completion_enabled=0
+
+"--------
+"Search
+"--------
+
+" ripgrep as vim grep
+set grepprg=rg\ --vimgrep
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+"--------
 "Ale
-let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'] }
+"--------
+" Disable ale fixers for go, currently using vim-go for this
+let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'], 'go': [] }
 
+" turn on gopls and golint linting
+let g:ale_linters = { 'go': ['gopls', 'golint'] }
+
+" tell ale to use gopls for completion
+let g:ale_go_langserver_executable = 'gopls'
+
+"--------
 "vim-jsx
+"--------
 let g:jsx_ext_required = 0
 
+"--------
 "vim-markdown
+"--------
 let g:markdown_fenced_languages = ['javascript', 'go', 'ruby']
-
-"splitjoin
-let g:splitjoin_trailing_comma = 1
 
 "===============
 "Appearance
@@ -144,11 +190,12 @@ let g:oceanic_next_terminal_italic = 1
 "===============
 "Maps
 "===============
-let g:ctrlp_map = '<leader>f'
+nnoremap <leader>f :Files<cr>
 nnoremap \ :NERDTreeToggle<cr>
 nmap <leader>af <Plug>(ale_fix)
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
 "Format json file
 nnoremap <leader>j :%!jq ''<CR>
 

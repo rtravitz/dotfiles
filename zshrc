@@ -57,7 +57,14 @@ alias vslcsp="bash $HOMEWORK_DIR/assignments/slcsp/validate.sh"
 alias vproto="cat $HOMEWORK_DIR/assignments/proto/answers"
 alias cpproto="cp $HOMEWORK_DIR/assignments/proto/txnlog.dat ."
 
-grade() {
+vhhbuild(){
+  cp "$HOMEWORK_DIR/assignments/hhbuilder/evaluate.html" evaluate.html
+  cp -r "$HOMEWORK_DIR/assignments/hhbuilder/jasmine" jasmine          
+  diff -s index.html "$HOMEWORK_DIR/assignments/hhbuilder/index.html"  
+  npx es-check es5 index.js 
+}
+
+grade_local() {
   grading_dir="$HOME/workspace/adhoc/homework/grading"
   echo "Deleting current grading directory: $grading_dir"
   rm -rf "$grading_dir"
@@ -76,11 +83,38 @@ grade() {
   echo "Done!"
 }
 
+grade() {
+  submission=$1
+
+  grading_dir="$HOME/workspace/adhoc/homework/grading"
+  echo "Deleting current grading directory: $grading_dir"
+  rm -rf "$grading_dir"
+
+  echo "Making new grading directory: $grading_dir"
+  mkdir $grading_dir
+
+  mv ~/Downloads/$submission.zip $grading_dir
+  cd $grading_dir
+
+  echo "Unzipping..."
+  mkdir $submission
+  cd $submission
+  unzip ../$submission.zip
+  cd ..
+  rm $submission.zip
+
+  echo "Copying submission to remote host"
+  scp -r $submission homeworkgrading.com:~
+
+  echo "Done!"
+}
+
 #=================
 # Go
 #=================
 export GOROOT=/usr/local/go
 export GOPATH=~/gocode
+export GO111MODULE=on
 export PATH=$PATH:$GOPATH/bin
 
 #=================
@@ -112,5 +146,16 @@ if test -f "$VETS_PATH"; then
   source $VETS_PATH
 fi
 
+# ================
+# FZF
+# ================
+
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
