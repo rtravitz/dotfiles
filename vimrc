@@ -190,6 +190,13 @@ let g:oceanic_next_terminal_italic = 1
 "===============
 "Maps
 "===============
+nnoremap <leader>nf :NERDTreeFind<cr>
+nnoremap <leader>cp :let @* = expand("%")<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>q :bd<cr>
+nnoremap <leader>wq :w\|bd<cr>
+nnoremap <leader>tv :windo wincmd H<cr>
+nnoremap <leader>th :windo wincmd K<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap \ :NERDTreeToggle<cr>
 nmap <leader>af <Plug>(ale_fix)
