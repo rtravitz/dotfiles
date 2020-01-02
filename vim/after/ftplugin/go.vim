@@ -8,13 +8,38 @@ function! s:build_go_files()
   endif
 endfunction
 
-nmap <localleader>b :<C-u>call <SID>build_go_files()<CR>
-nmap <localleader>t <Plug>(go-test)
-nmap <localleader>r <Plug>(go-run)
-nmap <localleader>c <Plug>(go-coverage-toggle)
-nmap <localleader>s <Plug>(go-def-split)
-nmap <localleader>v <Plug>(go-def-vertical)
-nmap <localleader>i <Plug>(go-info)
-nmap <localleader>d <Plug>(go-doc)
-nmap <localleader>n <Plug>(go-rename)
+nmap <localleader>gb :<C-u>call <SID>build_go_files()<CR>
+nmap <localleader>gt <Plug>(go-test)
+nmap <localleader>gr <Plug>(go-run)
+nmap <localleader>gc <Plug>(go-coverage-toggle)
+nmap <localleader>gs <Plug>(go-def-split)
+nmap <localleader>gv <Plug>(go-def-vertical)
+nmap <localleader>gi <Plug>(go-info)
+nmap <localleader>gd <Plug>(go-doc)
+nmap <localleader>gn <Plug>(go-rename)
+
+"---------
+"ALE
+"---------
+
+" turn on gopls and golint linting
+let g:ale_linters = { 'go': ['gopls', 'golint'] }
+
+" tell ale to use gopls for completion
+let g:ale_go_langserver_executable = 'gopls'
+
+"--------
+"Vim Go
+"--------
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+
+"language server support for go
+let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
+
+"manages imports on save in addition to formatting
+let g:go_fmt_command = 'goimports'
 

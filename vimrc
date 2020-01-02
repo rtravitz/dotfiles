@@ -71,6 +71,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'liuchengxu/vim-clap'
 Plug 'mhartington/oceanic-next'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
@@ -105,33 +106,6 @@ let NERDTreeShowHidden = 1 "nerdtree show hidden
 let g:NERDSpaceDelims = 1
 
 "--------
-"Vim Go
-"--------
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-
-" Tell vim-go to use gopls instead of guru, since guru doesn't seem to be
-" module-aware. Some useful docs on `gd`:
-"
-" By default there is the Vim shortcut ctrl-o that jumps to the previous
-" cursor location. It works great when it does, but not good enough if you're
-" navigating between Go declarations. If, for example, you jump to a file with
-" :GoDef and then scroll down to the bottom, and then maybe to the top, ctrl-o
-" will remember these locations as well...
-
-" And because this is also used so many times we have the shortcut ctrl-t
-
-" https://github.com/fatih/vim-go-tutorial#go-to-definition
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-
-" Turn off go-vim completion, let's try out ALE first. RN they're fighting
-" with each other.
-let g:go_code_completion_enabled=0
-
-"--------
 "Search
 "--------
 
@@ -148,18 +122,6 @@ set grepprg=rg\ --vimgrep
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-
-"--------
-"Ale
-"--------
-" Disable ale fixers for go, currently using vim-go for this
-let g:ale_fixers = { 'javascript': ['eslint'], 'ruby': ['rubocop'], 'go': [] }
-
-" turn on gopls and golint linting
-let g:ale_linters = { 'go': ['gopls', 'golint'] }
-
-" tell ale to use gopls for completion
-let g:ale_go_langserver_executable = 'gopls'
 
 "--------
 "vim-jsx
@@ -191,12 +153,19 @@ let g:oceanic_next_terminal_italic = 1
 "Maps
 "===============
 nnoremap <leader>nf :NERDTreeFind<cr>
+
+"copy buffer path to system clipboard
 nnoremap <leader>cp :let @* = expand("%")<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>q :bd<cr>
-nnoremap <leader>wq :w\|bd<cr>
+
+"to vertical: takes horizontal splits and makes them vertical
 nnoremap <leader>tv :windo wincmd H<cr>
+
+"to horizontal: takes vertical splits and makes them horizontal
 nnoremap <leader>th :windo wincmd K<cr>
+
+"fuzzy finding with fzf
 nnoremap <leader>f :Files<cr>
 nnoremap \ :NERDTreeToggle<cr>
 nmap <leader>af <Plug>(ale_fix)
@@ -220,10 +189,11 @@ nnoremap <c-k> <c-w><c-k>
 nnoremap <c-l> <c-w><c-l>
 nnoremap <c-h> <c-w><c-h>
 
-"Buffer prev/next
+"Buffer prev/next as encoded alt+z or alt+x on macOS
 nnoremap Ω :bprev<cr>
 nnoremap ≈ :bnext<cr>
 
+"Resize split horizontally encoded as alt+= and alt+- on macOS
 noremap ≠ :vertical resize +10<cr>
 noremap – :vertical resize -10<cr>
 
