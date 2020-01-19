@@ -83,6 +83,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-tbone'
 Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 call plug#end()
@@ -152,6 +153,16 @@ let g:oceanic_next_terminal_italic = 1
 "===============
 "Maps
 "===============
+vnoremap <leader>0 :Twrite 0<CR>
+vnoremap <leader>1 :Twrite 1<CR>
+vnoremap <leader>2 :Twrite 2<CR>
+vnoremap <leader>3 :Twrite 3<CR>
+vnoremap <leader>4 :Twrite 4<CR>
+vnoremap <leader>5 :Twrite 5<CR>
+vnoremap <leader>6 :Twrite 6<CR>
+
+nnoremap <leader>g :Clap grep<cr>
+
 nnoremap <leader>nf :NERDTreeFind<cr>
 
 "copy buffer path to system clipboard
@@ -173,7 +184,7 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "Format json file
-nnoremap <leader>j :%!jq ''<CR>
+nnoremap <leader>j :%!jq ''<cr>
 
 "Navigate quickfix list
 nnoremap <c-n> :cnext<cr>
@@ -199,4 +210,13 @@ noremap – :vertical resize -10<cr>
 
 "Experimental -> Send a test command to a second tmux pane.
 nnoremap <leader>rt :exe ":silent ! tmux send-keys -t 2 'be rspec %' Enter" \| redraw!<CR>
+
+" Repeat last command in the next tmux pane.
+nnoremap <leader>r :call <SID>TmuxRepeat()<CR>
+
+function! s:TmuxRepeat()
+  silent! exec "!tmux select-pane -l && tmux send up enter && tmux select-pane -l"
+  redraw!
+endfunction
+
 
