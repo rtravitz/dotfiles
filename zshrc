@@ -21,6 +21,8 @@ source $ZSH/oh-my-zsh.sh
 #=================
 export EDITOR='/usr/local/bin/nvim'
 
+alias vi='nvim'
+alias vim='nvim'
 alias dotfiles='cd ~/workspace/ryan/dotfiles'
 alias workspace='cd ~/workspace'
 alias lab='cd ~/workspace/lab'

@@ -1,8 +1,7 @@
 "===============
 "Settings
 "===============
-set nocompatible                "be iMproved, required 
-set shortmess=I                 "No splash screen
+set shortmess=It                "No splash screen and truncate file message
 set number                      "Enable line numbers
 set backspace=indent,eol,start  "Makes backspace key more powerful
 set showcmd                     "Show me what I am typing
@@ -14,7 +13,6 @@ set splitbelow                  "Split horizontal windows below current
 set encoding=utf-8              "Set default encoding to UTF-8
 set autoread                    "Automatically reread changed files without asking
 set hidden                      "Hide buffer instead of closing to allow unwritten changes
-set noshowmode                  "Show mode with airline instead
 set lazyredraw                  "Wait to redraw when running non-typed commands (ex. macros)
 
 "Wrap
@@ -69,7 +67,6 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'kien/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'liuchengxu/vim-clap'
 Plug 'mhartington/oceanic-next'
@@ -84,17 +81,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-tbone'
-Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 call plug#end()
 
 "Plugin Options
-
-"--------
-"Airline
-"--------
-let g:airline_theme='oceanicnext'
-let g:airline#extensions#tabline#enabled = 1 "airline buffer tabs
 
 "--------
 "Nerdtree
