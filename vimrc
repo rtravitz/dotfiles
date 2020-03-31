@@ -63,6 +63,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'elixir-editors/vim-elixir'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
