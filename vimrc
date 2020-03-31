@@ -177,6 +177,12 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 "Format json file
 nnoremap <leader>j :%!jq ''<cr>
 
+"Format html
+nnoremap <leader>h :%!xmllint --format --encode UTF-8 --html -<CR>
+
+"Format xml
+nnoremap <leader>x :%!xmllint --format -<CR>
+
 "Navigate quickfix list
 nnoremap <c-n> :cnext<cr>
 nnoremap <c-p> :cprevious<cr>
