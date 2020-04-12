@@ -138,6 +138,8 @@ eval "$(rbenv init -)"
 # Javascript
 #=================
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+NPM_PACKAGES="$HOME/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"
 
 #=================
 # Secrets
@@ -159,7 +161,13 @@ fi
 # --follow: Follow symlinks
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg \
+  --files \
+  --no-ignore \
+  --hidden \
+  --follow \
+  --glob "!.git/*" \
+  --glob "!node_modules/*"'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
