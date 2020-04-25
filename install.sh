@@ -1,70 +1,74 @@
 #!/usr/bin/env bash
+set +x
 
 create_link() {
-  echo -e "Linking $1 -> $2"
-  ln -sfF $1 $2
+  printf '%-20s ➡️ %-60s\n' $1 $2
+  # link requires absolute path
+  ln -sfF "$PWD/$1" $2
+}
+
+print_success() {
+  echo -e "\e[32m$1\e[0m"
+}
+
+print_title() {
+  echo '------------------------'
+  echo -e "\e[34m$1\e[0m"
 }
 
 # Create symlinks, overwriting current
-echo -e "Creating directories and symlinks...\n"
-
+echo "creating directories and symlinks..."
+echo "==========================="
 #===========================================
-#Neovim
+print_title 'Neovim'
 #===========================================
 mkdir -p $HOME/.config/nvim
 
 #after
-dot="$PWD/vim/after"
+dot="vim/after"
 sys="$HOME/.config/nvim/after"
 create_link $dot $sys
 
 #ftdetect
-dot="$PWD/vim/ftdetect"
+dot="vim/ftdetect"
 sys="$HOME/.config/nvim/ftdetect"
 create_link $dot $sys
 
 #vimrc
-dot="$PWD/vimrc"
+dot="vimrc"
 sys="$HOME/.config/nvim/init.vim"
 create_link $dot $sys
 
 #===========================================
-#Alacritty
+print_title 'Alacritty'
 #===========================================
 mkdir -p $HOME/.config/alacritty
 
-dot="$PWD/alacritty.yml"
+dot="alacritty.yml"
 sys="$HOME/.config/alacritty/alacritty.yml"
 create_link $dot $sys
 
 #===========================================
-#Git
+print_title 'Git'
 #===========================================
 mkdir -p $HOME/.config/git
 
-dot="$PWD/gitconfig"
+dot="gitconfig"
 sys="$HOME/.config/git/config"
 create_link $dot $sys
 
 #===========================================
-#Zsh
+print_title 'Bash'
 #===========================================
-dot="$PWD/zshrc"
-sys="$HOME/.zshrc"
+dot="bashrc"
+sys="$HOME/.bashrc"
 create_link $dot $sys
 
 #===========================================
-#Oh My Zsh
+print_title 'Tmux'
 #===========================================
-dot="$PWD/ryan.zsh-theme"
-sys="$HOME/.oh-my-zsh/custom/themes/ryan.zsh-theme"
-create_link $dot $sys
-
-#===========================================
-#Tmux
-#===========================================
-dot="$PWD/tmux.conf"
+dot="tmux.conf"
 sys="$HOME/.tmux.conf"
 create_link $dot $sys
 
-echo "Dotfile install complete!"
+print_success "✅ dotfile install complete!"
