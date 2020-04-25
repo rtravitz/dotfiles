@@ -69,6 +69,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'lepture/vim-jinja'
 Plug 'liuchengxu/vim-clap'
 Plug 'mhartington/oceanic-next'
 Plug 'mxw/vim-jsx'

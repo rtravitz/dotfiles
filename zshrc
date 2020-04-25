@@ -167,7 +167,10 @@ export FZF_DEFAULT_COMMAND='rg \
   --hidden \
   --follow \
   --glob "!.git/*" \
-  --glob "!node_modules/*"'
+  --glob "!node_modules/*" \
+  --glob "!.npm/*"'
+
+alias today="nvim $HOME/workspace/ryan/today.md"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
