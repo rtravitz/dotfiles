@@ -180,3 +180,7 @@ export FZF_DEFAULT_COMMAND='rg \
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# ================
+# Bat
+# ================
+export BAT_THEME=TwoDark

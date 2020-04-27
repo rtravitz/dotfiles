@@ -41,7 +41,7 @@ do
 done
 
 #vimrc
-dot="vimrc"
+dot="init.vim"
 sys="$HOME/.config/nvim/init.vim"
 create_link $dot $sys
 
@@ -59,14 +59,14 @@ print_title 'Git'
 #===========================================
 mkdir -p $HOME/.config/git
 
-dot="gitconfig"
+dot=".gitconfig"
 sys="$HOME/.config/git/config"
 create_link $dot $sys
 
 #===========================================
 print_title 'Bash'
 #===========================================
-dot="bashrc"
+dot=".bashrc"
 sys="$HOME/.bashrc"
 create_link $dot $sys
 
@@ -85,7 +85,7 @@ fi
 #===========================================
 print_title 'Tmux'
 #===========================================
-dot="tmux.conf"
+dot=".tmux.conf"
 sys="$HOME/.tmux.conf"
 create_link $dot $sys
 
