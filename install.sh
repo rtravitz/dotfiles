@@ -74,6 +74,14 @@ dot=".inputrc"
 sys="$HOME/.inputrc"
 create_link $dot $sys
 
+# add .bash_profile on Mac to source ~/.bashrc
+os=$(uname -s)
+if [[ $os =~ Darwin* ]]; then
+  dot=".bash_profile"
+  sys="$HOME/.bash_profile"
+  create_link $dot $sys
+fi
+
 #===========================================
 print_title 'Tmux'
 #===========================================

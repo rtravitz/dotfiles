@@ -14,7 +14,14 @@ dashed_line() {
   printf "%*s" $(tput cols) "" | sed "s/ /-/g"
 }
 
-PS1="\$(dashed_line)\n\e[33m\$(collapsed_wd)>\e[0m "
+# avoid using escape sequences for colors, because they
+# may not be portable across terminals. tput generates
+# the correct sequences for a terminal.
+# http://mywiki.wooledge.org/BashFAQ/053
+yellow=$(tput setaf 3)
+reset=$(tput sgr0)
+
+PS1="\$(dashed_line)\n\[$yellow\]\$(collapsed_wd)>\[$reset\] "
 
 #=================
 # General
