@@ -13,6 +13,14 @@
   unhide = update-index --no-assume-unchanged
   hidden = ! git ls-files -v | grep '^h' | cut -c3-
   brv = "!f() { git branch --sort=-creatordate --color=always --format='%(color:reset)%(creatordate:short) %(color:bold white)%(align:2,right)%(upstream:trackshort)%(end)%(color:nobold) %(align:40,left)%(color:yellow)%(refname:short)%(end) %(color:reset)%(contents:subject)'; }; f"
+  st = status
+  ci = commit --verbose
+  co = checkout
+  amend = commit --amend
+  aa = add --all
+  ff = merge --ff-only
+  fa = fetch --prune --all
+  pom = push origin master
 [core]
   excludesfile = /Users/ryantravitz/.gitignore
   pager = delta --dark --plus-color="#012800" --minus-color="#340001" --theme=TwoDark

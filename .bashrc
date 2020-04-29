@@ -21,7 +21,7 @@ dashed_line() {
 yellow=$(tput setaf 3)
 reset=$(tput sgr0)
 
-PS1="\$(dashed_line)\n\[$yellow\]\$(collapsed_wd)>\[$reset\] "
+PS1="\[$yellow\]\$(collapsed_wd)>\[$reset\] "
 
 #=================
 # General
@@ -30,13 +30,35 @@ export EDITOR='/usr/local/bin/nvim'
 
 alias vi='nvim'
 alias vim='nvim'
-alias l='ls -la'
 alias dotfiles='cd ~/workspace/ryan/dotfiles'
 alias workspace='cd ~/workspace'
 alias lab='cd ~/workspace/ryan/lab'
 alias dc='docker-compose'
 alias ryan='cd ~/workspace/ryan'
 alias today="nvim $HOME/workspace/ryan/today.md"
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CaF'
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+# force history to read/write on every command
+export PROMPT_COMMAND="history -a; history -n"
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=10000
+HISTFILESIZE=10000
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+else
+  export CLICOLOR=YES
+fi
 
 #=================
 # Tools
