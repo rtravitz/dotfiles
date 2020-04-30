@@ -153,7 +153,7 @@ export PATH=$PATH:$GOPATH/bin
 #=================
 # Rust
 #=================
-export PATH=$PATH:/Users/rtravitz/.cargo/bin
+export PATH="$PATH:$HOME/.cargo/bin"
 
 #=================
 # Ruby

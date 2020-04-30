@@ -20,6 +20,14 @@ print_title() {
 echo "creating directories and symlinks..."
 
 #===========================================
+print_title 'Bin'
+#===========================================
+#vimrc
+dot="bin/cid"
+sys="/usr/local/bin/cid"
+create_link $dot $sys
+
+#===========================================
 print_title 'Neovim'
 #===========================================
 #ftplugin
