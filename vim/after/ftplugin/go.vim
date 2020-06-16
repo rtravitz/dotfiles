@@ -18,16 +18,6 @@ nmap <localleader>gi <Plug>(go-info)
 nmap <localleader>gd <Plug>(go-doc)
 nmap <localleader>gn <Plug>(go-rename)
 
-"---------
-"ALE
-"---------
-
-" turn on gopls and golint linting
-let g:ale_linters = { 'go': ['gopls', 'golint'] }
-
-" tell ale to use gopls for completion
-let g:ale_go_langserver_executable = 'gopls'
-
 "--------
 "Vim Go
 "--------
