@@ -175,7 +175,7 @@ nmap <leader>af <Plug>(ale_fix)
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-"Format json file
+"Format json
 nnoremap <leader>j :%!jq ''<cr>
 
 "Format html
@@ -183,6 +183,9 @@ nnoremap <leader>h :%!xmllint --format --encode UTF-8 --html -<CR>
 
 "Format xml
 nnoremap <leader>x :%!xmllint --format -<CR>
+
+"Format yaml
+nnoremap <leader>y :%!yq r -<CR>
 
 "Navigate quickfix list
 nnoremap <c-n> :cnext<cr>

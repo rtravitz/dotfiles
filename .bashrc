@@ -28,6 +28,9 @@ PS1="\[$yellow\]\$(collapsed_wd)>\[$reset\] "
 #=================
 export EDITOR='/usr/local/bin/nvim'
 
+# bash completions
+source '/usr/local/etc/bash_completion.d/git-completion.bash'
+
 alias vi='nvim'
 alias vim='nvim'
 alias dotfiles='cd ~/workspace/ryan/dotfiles'
@@ -198,7 +201,8 @@ export FZF_DEFAULT_COMMAND='rg \
   --follow \
   --glob "!.git/*" \
   --glob "!node_modules/*" \
-  --glob "!.npm/*"'
+  --glob "!.npm/*" \
+  --glob "!dist/*"'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
