@@ -64,15 +64,13 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'elixir-editors/vim-elixir'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'lepture/vim-jinja'
-Plug 'liuchengxu/vim-clap'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mhartington/oceanic-next'
-Plug 'mxw/vim-jsx'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdcommenter'
@@ -246,4 +244,6 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 
 "Close the preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+let g:coc_global_extensions = ['coc-css', 'coc-eslint', 'coc-go', 'coc-html', 'coc-json', 'coc-yaml', 'coc-solargraph', 'coc-tsserver']
 
