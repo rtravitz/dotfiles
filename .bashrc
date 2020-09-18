@@ -91,7 +91,7 @@ alias homework="cd $HOMEWORK_DIR"
 alias vslcsp="bash $HOMEWORK_DIR/assignments/slcsp/validate.sh"
 alias vproto="cat $HOMEWORK_DIR/assignments/proto/answers"
 alias cpproto="cp $HOMEWORK_DIR/assignments/proto/txnlog.dat ."
-alias vfetch="diff $HOMEWORK_DIR/assignments/fetch/test/api/managed-record-test.js test/api/managed-record-test.js"
+alias vfetch="git diff $HOMEWORK_DIR/assignments/fetch/test/api/managed-record-test.js test/api/managed-record-test.js"
 
 vhhbuild(){
   cp "$HOMEWORK_DIR/assignments/hhbuilder/evaluate.html" evaluate.html

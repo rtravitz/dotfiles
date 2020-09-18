@@ -97,4 +97,12 @@ dot=".tmux.conf"
 sys="$HOME/.tmux.conf"
 create_link $dot $sys
 
+
+#===========================================
+print_title 'Github'
+#===========================================
+dot="gh"
+sys="$HOME/.config/gh"
+create_link $dot $sys
+
 print_success "\n✅ dotfile install complete!"

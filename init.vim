@@ -185,6 +185,9 @@ nnoremap <leader>x :%!xmllint --format -<CR>
 "Format yaml
 nnoremap <leader>y :%!yq r -<CR>
 
+"Markdown to Jira format
+nnoremap <leader>tj :%!pandoc -f markdown -t jira -<CR>
+
 "Navigate quickfix list
 nnoremap <c-n> :cnext<cr>
 nnoremap <c-p> :cprevious<cr>
@@ -258,3 +261,10 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
