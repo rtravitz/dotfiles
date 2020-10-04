@@ -249,7 +249,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 "Close the preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-let g:coc_global_extensions = ['coc-css', 'coc-eslint', 'coc-go', 'coc-html', 'coc-json', 'coc-yaml', 'coc-solargraph', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-css', 'coc-eslint', 'coc-go', 'coc-html', 'coc-json', 'coc-yaml', 'coc-solargraph', 'coc-tsserver', 'coc-prettier']
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
