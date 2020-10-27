@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set +x
 
+# run any builds with ninja to populate bin
+ninja
+
 create_link() {
   printf '%-20s ➡️ %-30s\n' $1 $2
   # link requires absolute path
@@ -22,9 +25,14 @@ echo "creating directories and symlinks..."
 #===========================================
 print_title 'Bin'
 #===========================================
-#vimrc
+#container id
 dot="bin/cid"
 sys="/usr/local/bin/cid"
+create_link $dot $sys
+
+#todos
+dot="bin/todos"
+sys="/usr/local/bin/todos"
 create_link $dot $sys
 
 #===========================================

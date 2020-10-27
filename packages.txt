@@ -30,3 +30,6 @@ postgresql
 
 # https://github.com/adrienverge/yamllint
 yamllint
+
+# https://github.com/ninja-build/ninja
+ninja

@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -112,7 +113,7 @@ func main() {
 
 	if _, err := os.Stat(dp.DayFilePath()); os.IsNotExist(err) {
 		fileHeaderDate := now.Format("Monday, January 2 2006")
-		fileHeader := fmt.Sprintf("TODOs for %s", fileHeaderDate)
+		fileHeader := fmt.Sprintf("TODOs for %s\n%s", fileHeaderDate, strings.Repeat("-", 20))
 		err := ioutil.WriteFile(dp.DayFilePath(), []byte(fileHeader), 0644)
 		if err != nil {
 			log.Fatal("failed to make new todo file:", err)

@@ -1,0 +1,6 @@
+rule gobuild 
+  command = go build -o $out $in
+  description = build go binaries
+
+build bin/todos: gobuild todos/main.go
+
