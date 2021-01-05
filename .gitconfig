@@ -21,6 +21,8 @@
   ff = merge --ff-only
   fa = fetch --prune --all
   pom = push origin master
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 [core]
   excludesfile = /Users/ryantravitz/.gitignore
   pager = delta --dark --plus-color="#012800" --minus-color="#340001" --theme=TwoDark
