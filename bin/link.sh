@@ -80,8 +80,12 @@ sys="$HOME/.config/git/config"
 create_link $dot $sys
 
 #===========================================
-print_title 'Bash'
+print_title 'Shells'
 #===========================================
+dot=".shellrc"
+sys="$HOME/.shellrc"
+create_link $dot $sys
+
 dot=".bashrc"
 sys="$HOME/.bashrc"
 create_link $dot $sys
@@ -98,13 +102,20 @@ if [[ $os =~ Darwin* ]]; then
   create_link $dot $sys
 fi
 
+dot=".zshrc"
+sys="$HOME/.zshrc"
+create_link $dot $sys
+
+dot="ryan.zsh-theme"
+sys="$HOME/.oh-my-zsh/custom/themes/ryan.zsh-theme"
+create_link $dot $sys
+
 #===========================================
 print_title 'Tmux'
 #===========================================
 dot=".tmux.conf"
 sys="$HOME/.tmux.conf"
 create_link $dot $sys
-
 
 #===========================================
 print_title 'Github'
@@ -114,3 +125,4 @@ sys="$HOME/.config/gh"
 create_link $dot $sys
 
 print_success "\n✅ dotfile install complete!"
+
