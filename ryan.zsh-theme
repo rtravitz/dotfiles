@@ -9,11 +9,6 @@ _fishy_collapsed_wd() {
 ')
 }
 
-dashed_line() {
-  printf "%*s" $(tput cols) "" | sed "s/ /-/g"
-}
-
 local user_color='yellow'; [ $UID -eq 0 ] && user_color='red'
-PROMPT="\$(dashed_line)"
-PROMPT+='%{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.>) '
+PROMPT='%{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.>) '
 
