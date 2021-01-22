@@ -16,6 +16,13 @@ alias la='ls -A'
 alias l='ls -CaF'
 alias gco='git checkout'
 
+
+# ================
+# Homebrew Apple Silicon
+# ================
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+alias ibrew='arch -x86_64 /usr/local/bin/brew'
+
 #=================
 # Tools
 #=================
