@@ -120,8 +120,9 @@ create_link $dot $sys
 #===========================================
 print_title 'Github'
 #===========================================
-dot="gh"
-sys="$HOME/.config/gh"
+mkdir -p $HOME/.config/gh
+dot="gh-config.yml"
+sys="$HOME/.config/gh/config.yml"
 create_link $dot $sys
 
 print_success "\n✅ dotfile install complete!"
