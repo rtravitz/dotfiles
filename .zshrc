@@ -24,3 +24,5 @@ source ~/.shellrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+. /opt/homebrew/opt/asdf/asdf.sh
+

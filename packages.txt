@@ -13,23 +13,20 @@ fzf
 # https://github.com/stedolan/jq
 jq
 
-# https://git-lfs.github.com/
-git-lfs
-
-# https://www.lua.org/
-lua
-
 # https://github.com/neovim/neovim
 neovim
 
 # https://github.com/BurntSushi/ripgrep
 ripgrep
 
-# https://www.postgresql.org/
-postgresql
-
 # https://github.com/adrienverge/yamllint
 yamllint
 
 # https://github.com/ninja-build/ninja
 ninja
+
+# https://github.com/asdf-vm/asdf
+asdf
+
+gnupg
+

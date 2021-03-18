@@ -127,3 +127,13 @@ create_link $dot $sys
 
 print_success "\n✅ dotfile install complete!"
 
+#===========================================
+print_title 'asdf'
+#===========================================
+mkdir -p $HOME/.config/gh
+dot=".tool-versions"
+sys="$HOME/.tool-versions"
+create_link $dot $sys
+
+print_success "\n✅ dotfile install complete!"
+
