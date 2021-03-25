@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set +x
+green=`tput setaf 2`
+reset=`tput sgr0`
 
 create_link() {
   printf '%-20s ➡️ %-30s\n' $1 $2
@@ -8,12 +10,12 @@ create_link() {
 }
 
 print_success() {
-  echo -e "\e[32m$1\e[0m"
+  echo -e "$green$1$reset"
 }
 
 print_title() {
   printf "%*s\n" '60' '' | sed 's/ /-/g'
-  echo -e "\e[34m$1\e[0m"
+  echo -e "$green$1$reset"
 }
 
 # Create symlinks, overwriting current
