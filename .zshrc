@@ -1,28 +1,27 @@
-#=================
-# ZSH
-#=================
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="ryan"
+[ -f $HOME/.config/zsh/aliases.zsh ] && source $HOME/.config/zsh/aliases.zsh
+[ -f $HOME/.config/zsh/ad-hoc.zsh ] && source $HOME/.config/zsh/ad-hoc.zsh
+[ -f $HOME/.config/zsh/languages.zsh ] && source $HOME/.config/zsh/languages.zsh
+[ -f $HOME/.config/zsh/prompt.zsh ] && source $HOME/.config/zsh/prompt.zsh
+[ -f $HOME/.config/zsh/tools.zsh ] && source $HOME/.config/zsh/tools.zsh
 
 #=================
-# Plugins
+# General
 #=================
-plugins=(
-  git
-  colored-man-pages
-  colorize
-  docker
-)
-
-source $ZSH/oh-my-zsh.sh
-
-source ~/.shellrc
+export EDITOR='/usr/local/bin/nvim'
 
 # ================
-# FZF
+# Homebrew Apple Silicon
 # ================
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#=================
+# Secrets
+#=================
+source ~/.secrets
 
-. /opt/homebrew/opt/asdf/asdf.sh
+VETS_PATH=~/workspace/ryan/dotfiles/dept-vets-affairs
+if test -f "$VETS_PATH"; then
+  source $VETS_PATH
+fi
+
 

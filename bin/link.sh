@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 set +x
 
-# run any builds with ninja to populate bin
-ninja
-
 create_link() {
   printf '%-20s ➡️ %-30s\n' $1 $2
   # link requires absolute path
-  ln -sf "$PWD/$1" $2
+  ln -sfh "$PWD/$1" $2
 }
 
 print_success() {
@@ -23,85 +20,15 @@ print_title() {
 echo "creating directories and symlinks..."
 
 #===========================================
-print_title 'Bin'
+print_title 'config'
 #===========================================
-#container id
-dot="bin/cid"
-sys="/usr/local/bin/cid"
-create_link $dot $sys
-
-#todos
-dot="bin/todos"
-sys="/usr/local/bin/todos"
+dot="config"
+sys="$HOME/.config"
 create_link $dot $sys
 
 #===========================================
-print_title 'Neovim'
+print_title 'zsh'
 #===========================================
-#ftplugin
-mkdir -p $HOME/.config/nvim/after/ftplugin
-dot="vim/after/ftplugin"
-sys="$HOME/.config/nvim/after/ftplugin"
-for ft in $(ls vim/after/ftplugin | xargs) 
-do
-  create_link "$dot/$ft" "$sys/$ft"
-done
-
-#ftdetect
-mkdir -p $HOME/.config/nvim/ftdetect
-dot="vim/ftdetect"
-sys="$HOME/.config/nvim/ftdetect"
-for ft in $(ls vim/ftdetect | xargs) 
-do
-  create_link "$dot/$ft" "$sys/$ft"
-done
-
-#vimrc
-dot="init.vim"
-sys="$HOME/.config/nvim/init.vim"
-create_link $dot $sys
-
-#===========================================
-print_title 'Alacritty'
-#===========================================
-mkdir -p $HOME/.config/alacritty
-
-dot="alacritty.yml"
-sys="$HOME/.config/alacritty/alacritty.yml"
-create_link $dot $sys
-
-#===========================================
-print_title 'Git'
-#===========================================
-mkdir -p $HOME/.config/git
-
-dot=".gitconfig"
-sys="$HOME/.config/git/config"
-create_link $dot $sys
-
-#===========================================
-print_title 'Shells'
-#===========================================
-dot=".shellrc"
-sys="$HOME/.shellrc"
-create_link $dot $sys
-
-dot=".bashrc"
-sys="$HOME/.bashrc"
-create_link $dot $sys
-
-dot=".inputrc"
-sys="$HOME/.inputrc"
-create_link $dot $sys
-
-# add .bash_profile on Mac to source ~/.bashrc
-os=$(uname -s)
-if [[ $os =~ Darwin* ]]; then
-  dot=".bash_profile"
-  sys="$HOME/.bash_profile"
-  create_link $dot $sys
-fi
-
 dot=".zshrc"
 sys="$HOME/.zshrc"
 create_link $dot $sys
@@ -111,26 +38,15 @@ sys="$HOME/.oh-my-zsh/custom/themes/ryan.zsh-theme"
 create_link $dot $sys
 
 #===========================================
-print_title 'Tmux'
+print_title 'tmux'
 #===========================================
 dot=".tmux.conf"
 sys="$HOME/.tmux.conf"
 create_link $dot $sys
 
 #===========================================
-print_title 'Github'
-#===========================================
-mkdir -p $HOME/.config/gh
-dot="gh-config.yml"
-sys="$HOME/.config/gh/config.yml"
-create_link $dot $sys
-
-print_success "\n✅ dotfile install complete!"
-
-#===========================================
 print_title 'asdf'
 #===========================================
-mkdir -p $HOME/.config/gh
 dot=".tool-versions"
 sys="$HOME/.tool-versions"
 create_link $dot $sys

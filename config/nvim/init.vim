@@ -52,28 +52,14 @@ let maplocalleader="," "Comma as localleader
 "===============
 "Plugins
 "===============
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  augroup plug_auto_install
-    autocmd!
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  augroup END
-endif
-
 call plug#begin('~/.vim/plugged')
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'elixir-editors/vim-elixir'
-Plug 'fatih/vim-go'
+Plug 'hrsh7th/nvim-compe'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'lepture/vim-jinja'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mhartington/oceanic-next'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'pangloss/vim-javascript'
+Plug 'neovim/nvim-lspconfig'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'segeljakt/vim-silicon'
@@ -152,8 +138,6 @@ vnoremap <leader>4 :Twrite 4<CR>
 vnoremap <leader>5 :Twrite 5<CR>
 vnoremap <leader>6 :Twrite 6<CR>
 
-nnoremap <leader>g :Clap grep<cr>
-
 nnoremap <leader>nf :NERDTreeFind<cr>
 
 "copy buffer path to system clipboard
@@ -210,9 +194,6 @@ nnoremap ≈ :bnext<cr>
 noremap ≠ :vertical resize +10<cr>
 noremap – :vertical resize -10<cr>
 
-"Experimental -> Send a test command to a second tmux pane.
-nnoremap <leader>rt :exe ":silent ! tmux send-keys -t 2 'be rspec %' Enter" \| redraw!<CR>
-
 " Repeat last command in the next tmux pane.
 nnoremap <leader>r :call <SID>TmuxRepeat()<CR>
 
@@ -221,50 +202,19 @@ function! s:TmuxRepeat()
   redraw!
 endfunction
 
-"=======================
-"COC.nvim
-"=======================
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+"Native LSP
+" LSP config (the mappings used in the default file don't quite work right)
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-
-"Use <Tab> and <S-Tab> to navigate the completion list
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-"Use <cr> to confirm completion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-
-"format code on <cr>
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-"Close the preview window when completion is done.
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-let g:coc_global_extensions = ['coc-css', 'coc-eslint', 'coc-go', 'coc-html', 'coc-json', 'coc-yaml', 'coc-solargraph', 'coc-tsserver', 'coc-prettier']
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" " auto-format
+" autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+" autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+" autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 
