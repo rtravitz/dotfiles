@@ -8,3 +8,8 @@ alias be='bundle exec'
 #=================
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.npm-global/bin:$PATH"
+
+#=================
+# Go
+#=================
+export PATH="$PATH:/Users/ryan/.asdf/installs/golang/1.16.2/packages/bin"
