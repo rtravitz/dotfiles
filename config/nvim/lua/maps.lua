@@ -2,11 +2,8 @@ vim.g.mapleader = ','
 
 local map = vim.api.nvim_set_keymap
 
-map('n', '<leader>nf', ':NERDTreeFind<cr>', { noremap = true })
-
 -- copy buffer path to system clipboard
 map('n', '<leader>cp', ':let @* = expand("%")<cr>', { noremap = true })
-map('n', '<leader>b', ':Buffers<cr>', { noremap = true })
 map('n', '<leader>q', ':bd', { noremap = true })
 
 -- to vertical: takes horizontal splits and makes them vertical
@@ -16,8 +13,12 @@ map('n', '<leader>tv', ':windo wincmd H<cr>', { noremap = true })
 map('n', '<leader>th', ':windo wincmd K<cr>', { noremap = true })
 
 -- fuzzy finding with fzf
-map('n', '<leader>f', ':Files<cr>', { noremap = true })
+map('n', '<leader>f', "<cmd>lua require('telescope.builtin').find_files()<cr>", { noremap = true })
+map('n', '<leader>g', "<cmd>lua require('telescope.builtin').live_grep()<cr>", { noremap = true })
+map('n', '<leader>b', "<cmd>lua require('telescope.builtin').buffers()<cr>", { noremap = true })
+
 map('n', "\\", ':NERDTreeToggle<cr>', { noremap = true })
+map('n', '<leader>nf', ':NERDTreeFind<cr>', { noremap = true })
 
 map('n', '<leader>ev', ':vsplit $MYVIMRC<cr>', { noremap = true })
 map('n', '<leader>sv', ':source $MYVIMRC<cr>', { noremap = true })
@@ -44,3 +45,5 @@ map('n', '≈', ':bnext<cr>', { noremap = true })
 -- Resize split horizontally encoded as alt+= and alt+- on macOS
 map('n', '≠', ':vertical resize +10<cr>', { noremap = true })
 map('n', '–', ':vertical resize -10<cr>', { noremap = true })
+
+--map('n', '<leader>r', ':call <SID>TmuxRepeat()<CR>', { noremap = true })

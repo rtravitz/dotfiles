@@ -3,12 +3,16 @@ local paq = require'paq-nvim'.paq  -- Import module and bind `paq` function
 paq{'savq/paq-nvim', opt=true}     -- Let Paq manage itself
 
 paq 'christoomey/vim-tmux-navigator'
-paq {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}  
-paq 'junegunn/fzf'
-paq 'junegunn/fzf.vim'
+paq {'iamcco/markdown-preview.nvim', run = function() vim.cmd('mkdp#util#install()') end}  
 paq 'mhartington/oceanic-next'
 paq 'neovim/nvim-lspconfig'
-paq {'nvim-treesitter/nvim-treesitter'}
+
+-- Telescope
+paq 'nvim-lua/popup.nvim'
+paq 'nvim-lua/plenary.nvim'
+paq 'nvim-telescope/telescope.nvim'
+
+paq 'nvim-treesitter/nvim-treesitter'
 paq 'scrooloose/nerdcommenter'
 paq 'scrooloose/nerdtree'
 paq 'segeljakt/vim-silicon'
@@ -18,5 +22,4 @@ paq 'tpope/vim-surround'
 paq 'tpope/vim-fugitive'
 paq 'tpope/vim-rhubarb'
 paq 'tpope/vim-tbone'
-paq 'wbthomason/packer.nvim'
 paq 'hrsh7th/nvim-compe'

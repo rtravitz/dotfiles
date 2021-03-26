@@ -1,21 +1,25 @@
 require('plugins')
-require('settings')
-require('maps')
+require('treesitter')
 require('lsp')
 require('plugins.compe')
+require('plugins.telescope')
+require('settings')
+require('maps')
 
-local cmd = vim.cmd
--- vim.cmd('source ~/.config/nvim/vimscript/init.vim')
--- b.filetype = 'plugin indent on'
-cmd('colorscheme OceanicNext')
+vim.cmd('colorscheme OceanicNext')
+vim.cmd('filetype plugin indent on')
 
-local cmd = vim.cmd
--- cmd([[
--- augroup pane_splits
---   autocmd!
---   autocmd VimResized * wincmd = "keep pane splits equal sizes
--- augroup END
--- ]])
+-- keep panes split at equal sizes
+vim.api.nvim_command('augroup pane_splits')
+vim.api.nvim_command('autocmd!')
+vim.api.nvim_command('autocmd VimResized * wincmd =')
+vim.api.nvim_command('augroup END')
 
-local ts = require 'nvim-treesitter.configs'
-ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
+
+-- Still needs to be ported
+--vim.cmd([[
+--function! s:TmuxRepeat()
+  --silent! exec "!tmux select-pane -l && tmux send up enter && tmux select-pane -l"
+  --redraw!
+--endfunction
+--]])

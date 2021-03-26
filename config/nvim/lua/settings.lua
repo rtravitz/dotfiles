@@ -1,25 +1,24 @@
-local g = vim.o
-local w = vim.wo
-local b = vim.bo
+vim.o.shortmess = 'It'
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.hidden = true
+vim.o.lazyredraw = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.timeout = false
+vim.o.ttimeoutlen = 10
+vim.o.mouse = 'a'
+vim.o.termguicolors = true
 
-g.shortmess = 'It'
-g.splitright = true
-g.splitbelow = true
-g.hidden = true
-g.lazyredraw = true
-g.ignorecase = true
-g.smartcase = true
-g.timeout = false
-g.ttimeoutlen = 10
-g.mouse = 'a'
-g.termguicolors = true
+-- tapstop, shiftwidth, and softabstop are global here even though
+-- they show as buffer options in the help text
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
 
-w.number = true
-w.wrap = false
+vim.wo.number = true
+vim.wo.wrap = false
 
-b.swapfile = false
-b.tabstop = 2
-b.shiftwidth = 2
-b.softtabstop = 2
-b.expandtab = true
--- b.filetype = 'plugin indent on'
+vim.bo.swapfile = false
+vim.bo.expandtab = true
+
