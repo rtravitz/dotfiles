@@ -29,4 +29,5 @@ export BAT_THEME=TwoDark
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-. /opt/homebrew/opt/asdf/asdf.sh
+[ -f /opt/homebrew/opt/asdf/asdf.sh ] && . /opt/homebrew/opt/asdf/asdf.sh
+[ -f /usr/local/opt/asdf/asdf.sh ] && . /usr/local/opt/asdf/asdf.sh

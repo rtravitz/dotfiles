@@ -14,7 +14,7 @@ vim.api.nvim_command('augroup pane_splits')
 vim.api.nvim_command('autocmd!')
 vim.api.nvim_command('autocmd VimResized * wincmd =')
 vim.api.nvim_command('augroup END')
-
+vim.g.NERDTreeShowHidden = 1
 
 -- Still needs to be ported
 --vim.cmd([[
