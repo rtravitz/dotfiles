@@ -47,6 +47,14 @@ sys="$HOME/.tmux.conf"
 create_link $dot $sys
 
 #===========================================
+print_title 'npm'
+#===========================================
+mkdir -p $HOME/workspace/tools/.npm-packages
+dot=".npmrc"
+sys="$HOME/.npmrc"
+create_link $dot $sys
+
+#===========================================
 print_title 'asdf'
 #===========================================
 dot=".tool-versions"
