@@ -13,3 +13,8 @@ export PATH="$HOME/workspace/tools/.npm-packages/bin:$PATH"
 # Go
 #=================
 export PATH="$PATH:/Users/ryan/.asdf/installs/golang/1.16.2/packages/bin"
+
+#=================
+# Java
+#=================
+. $HOME/.asdf/plugins/java/set-java-home.zsh

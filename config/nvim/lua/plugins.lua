@@ -5,6 +5,7 @@ paq{'savq/paq-nvim', opt=true}     -- Let Paq manage itself
 paq 'christoomey/vim-tmux-navigator'
 paq {'iamcco/markdown-preview.nvim', run = function() vim.cmd('mkdp#util#install()') end}  
 paq 'mfussenegger/nvim-jdtls'
+paq 'mfussenegger/nvim-dap'
 paq 'mhartington/oceanic-next'
 paq 'neovim/nvim-lspconfig'
 
