@@ -22,3 +22,13 @@ vim.wo.wrap = false
 vim.bo.swapfile = false
 vim.bo.expandtab = true
 
+vim.cmd('colorscheme OceanicNext')
+
+vim.g.NERDTreeShowHidden = 1
+
+-- keep panes split at equal sizes
+vim.api.nvim_command('augroup pane_splits')
+vim.api.nvim_command('autocmd!')
+vim.api.nvim_command('autocmd VimResized * wincmd =')
+vim.api.nvim_command('augroup END')
+
