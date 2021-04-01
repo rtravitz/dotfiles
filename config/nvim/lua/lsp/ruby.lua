@@ -1,7 +1,7 @@
 require'lspconfig'.solargraph.setup{
-	settings = {
-		solargraph = {
-			diagnostics = true
-		}
-	}
+  settings = {
+    solargraph = {
+      diagnostics = true
+    }
+  }
 }

@@ -10,12 +10,6 @@ vim.o.ttimeoutlen = 10
 vim.o.mouse = 'a'
 vim.o.termguicolors = true
 
--- tapstop, shiftwidth, and softabstop are global here even though
--- they show as buffer options in the help text
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
-
 vim.wo.number = true
 vim.wo.wrap = false
 
@@ -23,6 +17,13 @@ vim.bo.swapfile = false
 vim.bo.expandtab = true
 
 vim.cmd('colorscheme OceanicNext')
+vim.cmd [[
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set smartindent
+]]
 
 vim.g.NERDTreeShowHidden = 1
 
