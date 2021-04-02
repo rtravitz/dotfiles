@@ -4,7 +4,7 @@ local map = vim.api.nvim_set_keymap
 
 -- copy buffer path to system clipboard
 map('n', '<leader>cp', ':let @* = expand("%")<cr>', { noremap = true })
-map('n', '<leader>q', ':bd', { noremap = true })
+map('n', '<leader>q', ':bd<cr>', { noremap = true })
 
 -- to vertical: takes horizontal splits and makes them vertical
 map('n', '<leader>tv', ':windo wincmd H<cr>', { noremap = true })
@@ -13,9 +13,10 @@ map('n', '<leader>tv', ':windo wincmd H<cr>', { noremap = true })
 map('n', '<leader>th', ':windo wincmd K<cr>', { noremap = true })
 
 -- fuzzy finding with fzf
-map('n', '<leader>f', "<cmd>lua require('telescope.builtin').find_files()<cr>", { noremap = true })
-map('n', '<leader>g', "<cmd>lua require('telescope.builtin').live_grep()<cr>", { noremap = true })
-map('n', '<leader>b', "<cmd>lua require('telescope.builtin').buffers()<cr>", { noremap = true })
+map('n', '<leader>ff', "<cmd>lua require('plugins.telescope').find_files()<cr>", { noremap = true })
+map('n', '<leader>fg', "<cmd>lua require('plugins.telescope').live_grep()<cr>", { noremap = true })
+map('n', '<leader>fb', "<cmd>lua require('plugins.telescope').find_buffers()<cr>", { noremap = true })
+map('n', '<leader>fd', "<cmd>lua require('plugins.telescope').find_dotfiles()<cr>", { noremap = true })
 
 -- nerdtree
 map('n', "\\", ':NERDTreeToggle<cr>', { noremap = true })
