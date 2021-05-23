@@ -53,4 +53,3 @@ map('n', '≈', ':bnext<cr>', { noremap = true })
 -- resize split horizontally encoded as alt+= and alt+- on macOS
 map('n', '≠', ':vertical resize +10<cr>', { noremap = true })
 map('n', '–', ':vertical resize -10<cr>', { noremap = true })
-

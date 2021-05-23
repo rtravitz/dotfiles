@@ -32,7 +32,7 @@ require('telescope').setup{
     entry_prefix = "  ",
     initial_mode = "insert",
     file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-    file_ignore_patterns = {},
+    file_ignore_patterns = {'.git/*', 'node_modules/*'},
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     shorten_path = true,
     width = 0.75,
@@ -54,6 +54,7 @@ M.find_files = function()
     width = .75,
     previewer = false,
     shorten_path = false,
+    hidden = true,
   }
 
   require('telescope.builtin').find_files(opts)
@@ -64,6 +65,7 @@ M.find_buffers = function()
     width = .75,
     previewer = false,
     shorten_path = false,
+    hidden = true,
   }
 
   require('telescope.builtin').buffers(opts)
@@ -74,6 +76,7 @@ M.find_dotfiles = function()
     width = .75,
     previewer = false,
     shorten_path = false,
+    hidden = true,
     cwd = '~/workspace/ryan/dotfiles',
   }
 
