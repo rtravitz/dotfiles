@@ -9,11 +9,11 @@ vim.o.timeout = false
 vim.o.ttimeoutlen = 10
 vim.o.mouse = 'a'
 vim.o.termguicolors = true
+vim.o.swapfile = false
 
 vim.wo.number = true
 vim.wo.wrap = false
 
-vim.bo.swapfile = false
 vim.bo.expandtab = true
 
 vim.cmd('colorscheme OceanicNext')

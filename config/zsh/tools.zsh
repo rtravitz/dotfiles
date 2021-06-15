@@ -24,6 +24,11 @@ export FZF_DEFAULT_COMMAND='rg \
 export BAT_THEME=TwoDark
 
 # ================
+# Homebrew Apple Silicon
+# ================
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+# ================
 # FZF
 # ================
 

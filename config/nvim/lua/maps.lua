@@ -1,4 +1,5 @@
 vim.g.mapleader = ','
+vim.g.maplocalleader = ','
 
 local map = vim.api.nvim_set_keymap
 
@@ -19,7 +20,7 @@ map('n', '<leader>fb', "<cmd>lua require('plugins.telescope').find_buffers()<cr>
 map('n', '<leader>fd', "<cmd>lua require('plugins.telescope').find_dotfiles()<cr>", { noremap = true })
 
 -- nerdtree
-map('n', "\\", ':NERDTreeToggle<cr>', { noremap = true })
+map('n', '\\', ':NERDTreeToggle<cr>', { noremap = true })
 map('n', '<leader>nf', ':NERDTreeFind<cr>', { noremap = true })
 
 -- editing and sourcing vimrc, which does not work very well nowadays

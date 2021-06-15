@@ -9,11 +9,6 @@
 #=================
 export EDITOR='/usr/local/bin/nvim'
 
-# ================
-# Homebrew Apple Silicon
-# ================
-export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
-
 #=================
 # Secrets
 #=================

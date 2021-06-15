@@ -5,3 +5,4 @@ ad-hoc.zsh
 config/gatsby
 config/gh/hosts.yml
 config/cms_vpn
+config/configstore
