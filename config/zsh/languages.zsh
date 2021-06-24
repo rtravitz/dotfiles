@@ -18,4 +18,7 @@ export PATH="$PATH:$HOME/workspace/tools/go/bin"
 #=================
 # Java
 #=================
-. $HOME/.asdf/plugins/java/set-java-home.zsh
+SET_JAVA_HOME_PATH="$HOME/.asdf/plugins/java/set-java-home.zsh"
+if test -f "$SET_JAVA_HOME_PATH"; then
+  . $SET_JAVA_HOME_PATH
+fi

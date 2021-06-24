@@ -3,6 +3,11 @@ vim.g.maplocalleader = ','
 
 local map = vim.api.nvim_set_keymap
 
+function TmuxRepeat()
+  vim.api.nvim_command('silent! exec "!tmux select-pane -l && tmux send up enter && tmux select-pane -l"')
+  vim.api.nvim_command('redraw!')
+end
+
 -- copy buffer path to system clipboard
 map('n', '<leader>cp', ':let @* = expand("%")<cr>', { noremap = true })
 map('n', '<leader>q', ':bd<cr>', { noremap = true })
@@ -54,3 +59,9 @@ map('n', '≈', ':bnext<cr>', { noremap = true })
 -- resize split horizontally encoded as alt+= and alt+- on macOS
 map('n', '≠', ':vertical resize +10<cr>', { noremap = true })
 map('n', '–', ':vertical resize -10<cr>', { noremap = true })
+
+map('n', '<leader>r', '<cmd>lua TmuxRepeat()<cr>', { noremap = true })
+
+map('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { noremap = true, expr = true })
+map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })
+
