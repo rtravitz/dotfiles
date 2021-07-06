@@ -6,24 +6,20 @@ require('telescope').setup{
     prompt_prefix = '❯ ',
     selection_caret = '❯ ',
     winblend = 0,
-    preview_cutoff = 120,
     layout_strategy = 'horizontal',
-    layout_defaults = {
+    layout_config = {
+      preview_cutoff = 120,
+      prompt_position = "top",
       horizontal = {
-        width_padding = 0.1,
-        height_padding = 0.1,
-        preview_width = 0.6,
+        mirror = false,
       },
       vertical = {
-        width_padding = 0.05,
-        height_padding = 1,
-        preview_height = 0.5,
-      }
+        mirror = false,
+      },
     },
     selection_strategy = "reset",
     sorting_strategy = "descending",
     scroll_strategy = "cycle",
-    prompt_position = "top",
     mappings = {
       i = {
         ["<esc>"] = actions.close
@@ -35,9 +31,6 @@ require('telescope').setup{
     file_ignore_patterns = {'.git/*', 'node_modules/*'},
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     shorten_path = true,
-    width = 0.75,
-    results_height = 1,
-    results_width = 0.8,
     border = {},
     borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
     use_less = true,
@@ -51,10 +44,13 @@ local M = {}
 
 M.find_files = function()
   local opts = themes.get_dropdown {
-    width = .75,
     previewer = false,
     shorten_path = false,
     hidden = true,
+    
+    layout_config = {
+      width = .75,
+    },
   }
 
   require('telescope.builtin').find_files(opts)
@@ -62,10 +58,13 @@ end
 
 M.find_buffers = function()
   local opts = themes.get_dropdown {
-    width = .75,
     previewer = false,
     shorten_path = false,
     hidden = true,
+
+    layout_config = {
+      width = .75,
+    }, 
   }
 
   require('telescope.builtin').buffers(opts)
@@ -73,11 +72,14 @@ end
 
 M.find_dotfiles = function()
   local opts = themes.get_dropdown {
-    width = .75,
     previewer = false,
     shorten_path = false,
     hidden = true,
     cwd = '~/workspace/ryan/dotfiles',
+    
+    layout_config = {
+      width = .75,
+    }, 
   }
 
   require('telescope.builtin').find_files(opts)
