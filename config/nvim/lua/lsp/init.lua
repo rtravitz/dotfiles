@@ -1,5 +1,0 @@
-require('lsp.lua')
-require('lsp.golang')
-require('lsp.typescript')
-require('lsp.ruby')
-require('lsp.python')

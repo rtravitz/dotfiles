@@ -3,6 +3,9 @@ local themes = require('telescope.themes')
 
 require('telescope').setup{
   defaults = {
+    path_display = {
+      "shorten",
+    },
     prompt_prefix = '❯ ',
     selection_caret = '❯ ',
     winblend = 0,
@@ -30,7 +33,6 @@ require('telescope').setup{
     file_sorter =  require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {'.git/*', 'node_modules/*'},
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    shorten_path = true,
     border = {},
     borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
     use_less = true,
@@ -44,10 +46,11 @@ local M = {}
 
 M.find_files = function()
   local opts = themes.get_dropdown {
+    path_display = {
+      "absolute",
+    },
     previewer = false,
-    shorten_path = false,
     hidden = true,
-    
     layout_config = {
       width = .75,
     },
@@ -59,7 +62,6 @@ end
 M.find_buffers = function()
   local opts = themes.get_dropdown {
     previewer = false,
-    shorten_path = false,
     hidden = true,
 
     layout_config = {
@@ -73,7 +75,6 @@ end
 M.find_dotfiles = function()
   local opts = themes.get_dropdown {
     previewer = false,
-    shorten_path = false,
     hidden = true,
     cwd = '~/workspace/ryan/dotfiles',
     
@@ -86,11 +87,7 @@ M.find_dotfiles = function()
 end
 
 M.live_grep = function()
-  local opts = {
-    shorten_path = true,
-  }
-
-  require('telescope.builtin').live_grep(opts)
+  require('telescope.builtin').live_grep()
 end
 
 return setmetatable({}, {

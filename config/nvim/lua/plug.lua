@@ -2,9 +2,11 @@ vim.cmd 'packadd paq-nvim'         -- Load package
 local paq = require'paq-nvim'.paq  -- Import module and bind `paq` function
 paq{'savq/paq-nvim', opt=true}     -- Let Paq manage itself
 
+--paq 'chemzqm/vim-jsx-improve'
 paq 'christoomey/vim-tmux-navigator'
 paq {'iamcco/markdown-preview.nvim', run = function() vim.cmd('mkdp#util#install()') end}
 paq 'mattn/vim-goimports'
+paq 'MaxMEllon/vim-jsx-pretty'
 paq 'mfussenegger/nvim-jdtls'
 paq 'mfussenegger/nvim-dap'
 paq 'mhartington/oceanic-next'
@@ -29,3 +31,4 @@ paq 'tpope/vim-tbone'
 
 -- Configuration files for specific plugins
 require('plugins.telescope')
+require('plugins.treesitter')
