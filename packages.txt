@@ -1,6 +1,9 @@
 # https://github.com/asdf-vm/asdf
 asdf
 
+# https://www.gnu.org/software/bash/
+bash
+
 # https://git-scm.com/
 git
 
