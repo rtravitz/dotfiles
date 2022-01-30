@@ -8,6 +8,9 @@ function TmuxRepeat()
   vim.api.nvim_command('redraw!')
 end
 
+-- I can't relearn this: https://github.com/neovim/neovim/pull/13268
+map('n', 'Y', 'yy', { noremap = true })
+
 -- copy buffer path to system clipboard
 map('n', '<leader>cp', ':let @* = expand("%")<cr>', { noremap = true })
 map('n', '<leader>q', ':bd<cr>', { noremap = true })
@@ -64,4 +67,3 @@ map('n', '<leader>r', '<cmd>lua TmuxRepeat()<cr>', { noremap = true })
 
 map('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { noremap = true, expr = true })
 map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })
-

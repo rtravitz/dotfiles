@@ -1,32 +1,28 @@
-vim.cmd 'packadd paq-nvim'         -- Load package
-local paq = require'paq-nvim'.paq  -- Import module and bind `paq` function
-paq{'savq/paq-nvim', opt=true}     -- Let Paq manage itself
-
-paq 'christoomey/vim-tmux-navigator'
-paq {'iamcco/markdown-preview.nvim', run = function() vim.cmd('mkdp#util#install()') end}
-paq 'mattn/vim-goimports'
-paq 'mfussenegger/nvim-jdtls'
-paq 'mfussenegger/nvim-dap'
-paq 'mhartington/oceanic-next'
-paq 'neovim/nvim-lspconfig'
-
--- Telescope
-paq 'nvim-lua/completion-nvim'
-paq 'nvim-lua/popup.nvim'
-paq 'nvim-lua/plenary.nvim'
-paq 'nvim-telescope/telescope.nvim'
-
-paq 'nvim-treesitter/nvim-treesitter'
-paq 'scrooloose/nerdcommenter'
-paq 'scrooloose/nerdtree'
-paq 'segeljakt/vim-silicon'
-paq 'tpope/vim-markdown'
-paq 'tpope/vim-repeat'
-paq 'tpope/vim-surround'
-paq 'tpope/vim-fugitive'
-paq 'tpope/vim-rhubarb'
-paq 'tpope/vim-tbone'
-
--- Configuration files for specific plugins
-require('plugins.telescope')
-require('plugins.treesitter')
+return require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
+  use 'christoomey/vim-tmux-navigator'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
+  use 'mattn/vim-goimports'
+  use 'mhartington/oceanic-next'
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'neovim/nvim-lspconfig'
+  use 'scrooloose/nerdcommenter'
+  use 'scrooloose/nerdtree'
+  use 'tpope/vim-markdown'
+  use 'tpope/vim-repeat'
+  use 'tpope/vim-surround'
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
+  use 'tpope/vim-tbone'
+end)
