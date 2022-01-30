@@ -29,7 +29,7 @@ PS1="\[$yellow\]\$(collapsed_wd)>\[$reset\] "
 export EDITOR='/usr/local/bin/nvim'
 
 # bash completions
-source '/usr/local/etc/bash_completion.d/git-completion.bash'
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # append to the history file, don't overwrite it
 shopt -s histappend
