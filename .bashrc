@@ -73,13 +73,16 @@ alias tmk='tmux kill-session -t'
 alias tml='tmux ls'
 alias tmka="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
 alias tmuxconf='nvim ~/.tmux.conf'
-alias zs='source ~/.zshrc'
-alias zshrc='nvim ~/.zshrc'
+alias bs='source ~/.bash_profile'
+alias bashrc='nvim ~/.bashrc'
 alias vimrc='nvim ~/.config/nvim/init.vim'
 alias alac='nvim ~/.config/alacritty/alacritty.yml'
 alias vbr="git reflog | grep -o \"checkout: moving from .* to \" |\
     sed -e 's/checkout: moving from //' -e 's/ to $//' | head -10 | grep -v 'master'"
 alias del-merged='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
+
+# Add bin for user
+export PATH="$HOME/bin:$PATH"
 
 #=================
 # Ruby
@@ -101,7 +104,7 @@ export PATH="$PATH:$HOME/workspace/tools/go/bin"
 #=================
 # Java
 #=================
-SET_JAVA_HOME_PATH="$HOME/.asdf/plugins/java/set-java-home.zsh"
+SET_JAVA_HOME_PATH="$HOME/.asdf/plugins/java/set-java-home.bash"
 if test -f "$SET_JAVA_HOME_PATH"; then
   . $SET_JAVA_HOME_PATH
 fi
@@ -150,3 +153,4 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 # Secrets
 #=================
 source ~/.secrets
+

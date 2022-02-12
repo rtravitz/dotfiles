@@ -5,5 +5,3 @@ require('plugins.cmp')
 require('lsp')
 require('maps')
 require('options')
-
-

@@ -8,6 +8,9 @@
 #=================
 export EDITOR='/usr/local/bin/nvim'
 
+# Add bin for user
+export PATH="$HOME/bin:$PATH"
+
 #=================
 # Secrets
 #=================
