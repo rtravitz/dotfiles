@@ -42,6 +42,8 @@ require('telescope').setup{
   }
 }
 
+require('telescope').load_extension('fzf')
+
 local M = {}
 
 M.find_files = function()
