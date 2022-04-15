@@ -67,3 +67,5 @@ map('n', '<leader>r', '<cmd>lua TmuxRepeat()<cr>', { noremap = true })
 
 map('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { noremap = true, expr = true })
 map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })
+
+map('n', '<leader>pe', "<cmd>lua require('perforce').checkout()<cr>", { noremap = true })
