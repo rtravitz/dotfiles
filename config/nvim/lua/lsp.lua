@@ -24,7 +24,7 @@ local function on_attach(client, bufnr)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
-local servers = { 'gopls', 'solargraph', 'tsserver' }
+local servers = { 'gopls', 'solargraph', 'tsserver', 'clangd' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     capabilities = capabilities,
@@ -40,6 +40,8 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 require'lspconfig'.sumneko_lua.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {
