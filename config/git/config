@@ -25,9 +25,13 @@
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 [core]
   excludesfile = /Users/ryantravitz/.gitignore
-  pager = delta --dark --plus-color="#012800" --minus-color="#340001" --theme=TwoDark
+  pager = delta 
 [interactive]
   diffFilter = delta --color-only
+[delta]
+  features = TwoDark
+  line-numbers = true
+  side-by-side = true
 
 [init]
 	defaultBranch = main
