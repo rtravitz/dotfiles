@@ -1,7 +1,7 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 function TmuxRepeat()
   vim.api.nvim_command('silent! exec "!tmux select-pane -l && tmux send up enter && tmux select-pane -l"')
@@ -9,63 +9,63 @@ function TmuxRepeat()
 end
 
 -- I can't relearn this: https://github.com/neovim/neovim/pull/13268
-map('n', 'Y', 'yy', { noremap = true })
+map('n', 'Y', 'yy')
 
 -- copy buffer path to system clipboard
-map('n', '<leader>cp', ':let @* = expand("%")<cr>', { noremap = true })
-map('n', '<leader>q', ':bd<cr>', { noremap = true })
+map('n', '<leader>cp', ':let @* = expand("%")<cr>')
+map('n', '<leader>q', ':bd<cr>')
 
 -- to vertical: takes horizontal splits and makes them vertical
-map('n', '<leader>tv', ':windo wincmd H<cr>', { noremap = true })
+map('n', '<leader>tv', ':windo wincmd H<cr>')
 
 -- to horizontal: takes vertical splits and makes them horizontal
-map('n', '<leader>th', ':windo wincmd K<cr>', { noremap = true })
+map('n', '<leader>th', ':windo wincmd K<cr>')
 
 -- fuzzy finding with fzf
-map('n', '<leader>ff', "<cmd>lua require('plugins.telescope').find_files()<cr>", { noremap = true })
-map('n', '<leader>fg', "<cmd>lua require('plugins.telescope').live_grep()<cr>", { noremap = true })
-map('n', '<leader>fb', "<cmd>lua require('plugins.telescope').find_buffers()<cr>", { noremap = true })
-map('n', '<leader>fd', "<cmd>lua require('plugins.telescope').find_dotfiles()<cr>", { noremap = true })
+map('n', '<leader>ff', require('plugins.telescope').find_files)
+map('n', '<leader>fg', require('plugins.telescope').live_grep)
+map('n', '<leader>fb', require('plugins.telescope').find_buffers)
+map('n', '<leader>fd', require('plugins.telescope').find_dotfiles)
 
 -- nerdtree
-map('n', '\\', ':NERDTreeToggle<cr>', { noremap = true })
-map('n', '<leader>nf', ':NERDTreeFind<cr>', { noremap = true })
+map('n', '\\', ':NERDTreeToggle<cr>')
+map('n', '<leader>nf', ':NERDTreeFind<cr>')
 
 -- editing and sourcing vimrc, which does not work very well nowadays
-map('n', '<leader>ev', ':vsplit $MYVIMRC<cr>', { noremap = true })
-map('n', '<leader>sv', ':source $MYVIMRC<cr>', { noremap = true })
+map('n', '<leader>ev', ':vsplit $MYVIMRC<cr>')
+map('n', '<leader>sv', ':source $MYVIMRC<cr>')
 
 -- various file formatters
-map('n', '<leader>j', ':%!jq \'\'<cr>', { noremap = true })
-map('n', '<leader>h', ':%!xmllint --format --encode UTF-8 --html -<cr>', { noremap = true })
-map('n', '<leader>x', ':%!xmllint --format -<cr>', { noremap = true })
-map('n', '<leader>y', ':%!yq r -<cr>', { noremap = true })
+map('n', '<leader>j', ':%!jq \'\'<cr>')
+map('n', '<leader>h', ':%!xmllint --format --encode UTF-8 --html -<cr>')
+map('n', '<leader>x', ':%!xmllint --format -<cr>')
+map('n', '<leader>y', ':%!yq r -<cr>')
 
 -- convert markdown buffer to jira's abomination markup syntax
-map('n', '<leader>tj', ':%!pandoc -f markdown -t jira -<cr>', { noremap = true })
+map('n', '<leader>tj', ':%!pandoc -f markdown -t jira -<cr>')
 
 -- navigate quickfix
-map('n', '<c-n>', ':cnext<cr>', { noremap = true })
-map('n', '<c-p>', ':cprevious<cr>', { noremap = true })
-map('n', '<leader>ef', ':cclose<cr>', { noremap = true })
+map('n', '<c-n>', ':cnext<cr>')
+map('n', '<c-p>', ':cprevious<cr>')
+map('n', '<leader>ef', ':cclose<cr>')
 
 -- vimsplit navigation
-map('n', '<c-j>', '<c-w><c-j>', { noremap = true })
-map('n', '<c-k>', '<c-w><c-k>', { noremap = true })
-map('n', '<c-l>', '<c-w><c-l>', { noremap = true })
-map('n', '<c-h>', '<c-w><c-h>', { noremap = true })
+map('n', '<c-j>', '<c-w><c-j>')
+map('n', '<c-k>', '<c-w><c-k>')
+map('n', '<c-l>', '<c-w><c-l>')
+map('n', '<c-h>', '<c-w><c-h>')
 
 -- buffer prev/next as encoded alt+z or alt+x on macOS
-map('n', 'Ω', ':bprev<cr>', { noremap = true })
-map('n', '≈', ':bnext<cr>', { noremap = true })
+map('n', 'Ω', ':bprev<cr>')
+map('n', '≈', ':bnext<cr>')
 
 -- resize split horizontally encoded as alt+= and alt+- on macOS
-map('n', '≠', ':vertical resize +10<cr>', { noremap = true })
-map('n', '–', ':vertical resize -10<cr>', { noremap = true })
+map('n', '≠', ':vertical resize +10<cr>')
+map('n', '–', ':vertical resize -10<cr>')
 
-map('n', '<leader>r', '<cmd>lua TmuxRepeat()<cr>', { noremap = true })
+map('n', '<leader>r', TmuxRepeat)
 
-map('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { noremap = true, expr = true })
-map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true, expr = true })
+map('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"')
+map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"')
 
-map('n', '<leader>pe', "<cmd>lua require('perforce').checkout()<cr>", { noremap = true })
+map('n', '<leader>pe', require('perforce').checkout)

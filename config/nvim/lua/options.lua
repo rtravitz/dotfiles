@@ -29,8 +29,3 @@ vim.g.NERDTreeShowHidden = 1
 vim.o.completeopt = 'menuone,noinsert,noselect'
 vim.g.completion_enable_auto_signature = 0
 
--- keep panes split at equal sizes
-vim.api.nvim_command('augroup pane_splits')
-vim.api.nvim_command('autocmd!')
-vim.api.nvim_command('autocmd VimResized * wincmd =')
-vim.api.nvim_command('augroup END')
