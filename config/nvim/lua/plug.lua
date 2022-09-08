@@ -12,7 +12,7 @@ return require('packer').startup(function(use)
   use 'mattn/vim-goimports'
   use 'mhartington/oceanic-next'
   use { 'nvim-telescope/telescope.nvim', requires = { {'nvim-lua/plenary.nvim'} } }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }  
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'neovim/nvim-lspconfig'
   use 'scrooloose/nerdcommenter'

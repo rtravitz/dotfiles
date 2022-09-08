@@ -8,6 +8,9 @@ function TmuxRepeat()
   vim.api.nvim_command('redraw!')
 end
 
+-- bye bye highlights
+map('n', '<space><space>', ':noh<cr>')
+
 -- I can't relearn this: https://github.com/neovim/neovim/pull/13268
 map('n', 'Y', 'yy')
 
@@ -64,8 +67,5 @@ map('n', '≠', ':vertical resize +10<cr>')
 map('n', '–', ':vertical resize -10<cr>')
 
 map('n', '<leader>r', TmuxRepeat)
-
-map('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"')
-map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"')
 
 map('n', '<leader>pe', require('perforce').checkout)
