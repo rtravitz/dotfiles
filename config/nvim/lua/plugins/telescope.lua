@@ -68,7 +68,7 @@ M.find_buffers = function()
 
     layout_config = {
       width = .75,
-    }, 
+    },
   }
 
   require('telescope.builtin').buffers(opts)
@@ -79,10 +79,10 @@ M.find_dotfiles = function()
     previewer = false,
     hidden = true,
     cwd = '~/workspace/ryan/dotfiles',
-    
+
     layout_config = {
       width = .75,
-    }, 
+    },
   }
 
   require('telescope.builtin').find_files(opts)
@@ -90,6 +90,10 @@ end
 
 M.live_grep = function()
   require('telescope.builtin').live_grep()
+end
+
+M.lsp_document_symbols = function()
+  require('telescope.builtin').lsp_document_symbols()
 end
 
 return setmetatable({}, {

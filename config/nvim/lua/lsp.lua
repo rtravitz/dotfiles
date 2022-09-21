@@ -2,29 +2,29 @@ local nvim_lsp = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local function on_attach(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local function nmap(key, action)
+    local opts = { noremap=true, silent=true, buffer = bufnr }
+    vim.keymap.set('n', key, action, opts)
+  end
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  nmap('gd', vim.lsp.buf.definition)
+  nmap('gt', vim.lsp.buf.type_definition)
+  nmap('gi', vim.lsp.buf.implementation)
+  nmap('gr', vim.lsp.buf.references)
+  nmap('K', vim.lsp.buf.hover)
+  nmap('<space>rn', vim.lsp.buf.rename)
+  nmap('<space>ca', vim.lsp.buf.code_action)
+  nmap('<space>f', vim.lsp.buf.formatting)
+
+  -- diagnostic
+  nmap('<space>e', vim.diagnostic.open_float)
+  nmap('<space>dj', vim.diagnostic.goto_next)
+  nmap('<space>dk', vim.diagnostic.goto_prev)
 end
 
-local servers = { 'gopls', 'solargraph', 'tsserver', 'clangd' }
+local servers = { 'gopls', 'tsserver', 'clangd' }
+
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     capabilities = capabilities,
@@ -34,6 +34,8 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+require'lspconfig'.eslint.setup{}
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
@@ -65,8 +67,6 @@ require'lspconfig'.sumneko_lua.setup {
     },
   },
 }
-
-require'lspconfig'.eslint.setup{}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {

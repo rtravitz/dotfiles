@@ -2,7 +2,6 @@ local cmp = require'cmp'
 
 cmp.setup({
   snippet = {
-    -- REQUIRED - you must specify a snippet engine
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
     end,
@@ -26,11 +25,3 @@ cmp.setup({
   })
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
---cmp.setup.cmdline(':', {
-  --sources = cmp.config.sources({
-    --{ name = 'path' }
-  --}, {
-    --{ name = 'cmdline' }
-  --})
---})

@@ -29,6 +29,7 @@ map('n', '<leader>ff', require('plugins.telescope').find_files)
 map('n', '<leader>fg', require('plugins.telescope').live_grep)
 map('n', '<leader>fb', require('plugins.telescope').find_buffers)
 map('n', '<leader>fd', require('plugins.telescope').find_dotfiles)
+map('n', '<leader>fs', require('plugins.telescope').lsp_document_symbols)
 
 -- nerdtree
 map('n', '\\', ':NERDTreeToggle<cr>')

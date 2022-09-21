@@ -1,31 +1,35 @@
-vim.o.shortmess = 'It'
-vim.o.splitright = true
-vim.o.splitbelow = true
-vim.o.hidden = true
-vim.o.lazyredraw = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.timeout = false
-vim.o.ttimeoutlen = 10
-vim.o.mouse = 'a'
-vim.o.termguicolors = true
-vim.o.swapfile = false
+local opt = vim.opt
 
-vim.wo.number = true
-vim.wo.wrap = false
+opt.shortmess = 'It'
+opt.splitright = true
+opt.splitbelow = true
+opt.hidden = true
+opt.lazyredraw = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.timeout = false
+opt.ttimeoutlen = 10
+opt.mouse = 'a'
+opt.termguicolors = true
+opt.swapfile = false
 
-vim.bo.expandtab = true
+opt.number = true
+opt.wrap = false
 
-vim.cmd('colorscheme OceanicNext')
-vim.cmd [[
-set expandtab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set smartindent
-]]
+opt.expandtab = true
+
+opt.laststatus = 3
+
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.tabstop = 2
+opt.smartindent = true
+
+vim.cmd 'colorscheme OceanicNext'
+vim.cmd 'highlight WinSeparator guibg=None'
 
 vim.g.NERDTreeShowHidden = 1
-vim.o.completeopt = 'menuone,noinsert,noselect'
+opt.completeopt = 'menuone,noinsert,noselect'
 vim.g.completion_enable_auto_signature = 0
 
