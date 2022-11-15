@@ -30,6 +30,9 @@ export EDITOR='/usr/local/bin/nvim'
 
 # bash completions
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -80,6 +83,7 @@ alias alac='nvim ~/.config/alacritty/alacritty.yml'
 alias vbr="git reflog | grep -o \"checkout: moving from .* to \" |\
     sed -e 's/checkout: moving from //' -e 's/ to $//' | head -10 | grep -v 'master'"
 alias del-merged='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
+alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
 
 # Add bin for user
 export PATH="$HOME/bin:$PATH"
@@ -102,12 +106,10 @@ export PATH="$HOME/workspace/tools/.npm-packages/bin:$PATH"
 export PATH="$PATH:$HOME/workspace/tools/go/bin"
 
 #=================
-# Java
+# CPP
 #=================
-SET_JAVA_HOME_PATH="$HOME/.asdf/plugins/java/set-java-home.bash"
-if test -f "$SET_JAVA_HOME_PATH"; then
-  . $SET_JAVA_HOME_PATH
-fi
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
 
 # ================
 # FZF
@@ -145,12 +147,14 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.bash
 
-[ -f /opt/homebrew/opt/asdf/asdf.sh ] && . /opt/homebrew/opt/asdf/asdf.sh
-[ -f /usr/local/opt/asdf/asdf.sh ] && . /usr/local/opt/asdf/asdf.sh
-
-
 #=================
 # Secrets
 #=================
-source ~/.secrets
+[-f ~/.secrets ] && source ~/.secrets
+
+# ================
+# ASDF
+# ================
+. /usr/local/opt/asdf/libexec/asdf.sh
+. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
 
