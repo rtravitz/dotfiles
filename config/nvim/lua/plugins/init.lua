@@ -1,0 +1,5 @@
+require('plugins.plug')
+require('plugins.telescope')
+require('plugins.treesitter')
+require('plugins.cmp')
+require('plugins.nvim-tree')

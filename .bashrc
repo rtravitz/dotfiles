@@ -150,7 +150,7 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 #=================
 # Secrets
 #=================
-[-f ~/.secrets ] && source ~/.secrets
+[ -f ~/.secrets ] && source ~/.secrets
 
 # ================
 # ASDF

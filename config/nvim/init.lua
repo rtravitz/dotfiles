@@ -1,7 +1,4 @@
-require('plug')
-require('plugins.telescope')
-require('plugins.treesitter')
-require('plugins.cmp')
+require('plugins')
 require('lsp')
 require('maps')
 require('options')

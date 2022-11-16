@@ -32,8 +32,8 @@ map('n', '<leader>fd', require('plugins.telescope').find_dotfiles)
 map('n', '<leader>fs', require('plugins.telescope').lsp_document_symbols)
 
 -- nerdtree
-map('n', '\\', ':NERDTreeToggle<cr>')
-map('n', '<leader>nf', ':NERDTreeFind<cr>')
+map('n', '\\', ':NvimTreeToggle<cr>')
+map('n', '<leader>nf', ':NvimTreeFindFile<cr>')
 
 -- editing and sourcing vimrc, which does not work very well nowadays
 map('n', '<leader>ev', ':vsplit $MYVIMRC<cr>')

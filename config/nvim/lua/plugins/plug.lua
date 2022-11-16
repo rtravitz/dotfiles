@@ -11,12 +11,12 @@ return require('packer').startup(function(use)
   use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
   use 'mattn/vim-goimports'
   use 'mhartington/oceanic-next'
+  use 'neovim/nvim-lspconfig'
   use { 'nvim-telescope/telescope.nvim', requires = { {'nvim-lua/plenary.nvim'} } }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'neovim/nvim-lspconfig'
-  use 'scrooloose/nerdcommenter'
-  use 'scrooloose/nerdtree'
+  use 'nvim-tree/nvim-tree.lua'
+  use 'preservim/nerdcommenter'
   use 'tpope/vim-markdown'
   use 'tpope/vim-repeat'
   use 'tpope/vim-surround'
