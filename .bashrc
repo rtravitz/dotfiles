@@ -155,6 +155,11 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 # ================
 # ASDF
 # ================
-. /usr/local/opt/asdf/libexec/asdf.sh
-. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
+. $(brew --prefix asdf)/libexec/asdf.sh
+. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
 
+
+# ================
+# Bash completion
+# ================
+[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"

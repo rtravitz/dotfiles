@@ -26,10 +26,20 @@ opt.softtabstop = 2
 opt.tabstop = 2
 opt.smartindent = true
 
-vim.cmd 'colorscheme OceanicNext'
-vim.cmd 'highlight WinSeparator guibg=None'
-
-vim.g.NERDTreeShowHidden = 1
 opt.completeopt = 'menuone,noinsert,noselect'
 vim.g.completion_enable_auto_signature = 0
+
+vim.cmd [[
+  let g:oceanic_next_terminal_bold = 1
+  let g:oceanic_next_terminal_italic = 1
+  colorscheme OceanicNext
+  hi Normal guibg=NONE ctermbg=NONE
+  hi LineNr guibg=NONE ctermbg=NONE
+  hi SignColumn guibg=NONE ctermbg=NONE
+  hi EndOfBuffer guibg=NONE ctermbg=NONE
+  hi WinSeparator guibg=NONE ctermbg=NONE
+]]
+
+vim.api.nvim_set_hl(0, 'VertSplit', { bg = 'None' })
+
 

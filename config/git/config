@@ -29,9 +29,13 @@
 [interactive]
   diffFilter = delta --color-only
 [delta]
+  navigate = true
   features = TwoDark
   line-numbers = true
-  side-by-side = true
-
+  side-by-side = false
+[merge]
+  conflictstyle = diff3
+[diff]
+  colorMoved = default
 [init]
 	defaultBranch = main
