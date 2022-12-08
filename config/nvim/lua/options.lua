@@ -40,6 +40,14 @@ vim.cmd [[
   hi WinSeparator guibg=NONE ctermbg=NONE
 ]]
 
+-- OceanicNext colorscheme hasn't updated the renamed DiagnosticUnderlineError, etc. yet
+vim.cmd [[
+  hi DiagnosticUnderlineError gui=undercurl guisp=#ec5f67
+  hi DiagnosticUnderlineWarn gui=undercurl guisp=#fac863
+  hi DiagnosticUnderlineInfo gui=undercurl guisp=#6699cc
+  hi DiagnosticUnderlineHint gui=undercurl guisp=#62b3b2
+]]
+
 vim.api.nvim_set_hl(0, 'VertSplit', { bg = 'None' })
 
 
