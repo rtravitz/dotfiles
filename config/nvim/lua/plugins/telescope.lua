@@ -78,7 +78,7 @@ M.find_dotfiles = function()
   local opts = themes.get_dropdown {
     previewer = false,
     hidden = true,
-    cwd = '~/workspace/ryan/dotfiles',
+    cwd = '~/dev/dotfiles',
 
     layout_config = {
       width = .75,

@@ -1,11 +1,10 @@
 alias vi='nvim'
 alias vim='nvim'
-alias dotfiles='cd ~/workspace/ryan/dotfiles'
-alias workspace='cd ~/workspace'
-alias lab='cd ~/workspace/ryan/lab'
+alias dotfiles='cd ~/dev/dotfiles'
+alias dev='cd ~/dev'
+alias lab='cd ~/dev/lab'
 alias dc='docker-compose'
-alias ryan='cd ~/workspace/ryan'
-alias today="nvim $HOME/workspace/ryan/today.md"
+alias today="nvim $HOME/dev/today.md"
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CaF'

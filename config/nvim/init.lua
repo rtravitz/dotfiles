@@ -1,4 +1,5 @@
 require('plugins')
+require('global')
 require('lsp')
 require('maps')
 require('options')
