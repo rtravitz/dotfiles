@@ -13,6 +13,7 @@ local function on_attach(client, bufnr)
   nmap('gi', vim.lsp.buf.implementation)
   nmap('gr', vim.lsp.buf.references)
   nmap('K', vim.lsp.buf.hover)
+  --nmap('<C-k>', vim.lsp.buf.signature_help)
   nmap('<space>rn', vim.lsp.buf.rename)
   nmap('<space>ca', vim.lsp.buf.code_action)
   nmap('<space>f', vim.lsp.buf.formatting)
@@ -37,14 +38,21 @@ end
 
 require'lspconfig'.eslint.setup{}
 
+-- Make runtime files discoverable to the server
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
 require'lspconfig'.sumneko_lua.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT)
         version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
@@ -52,7 +60,7 @@ require'lspconfig'.sumneko_lua.setup {
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = vim.api.nvim_get_runtime_file('', true),
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {

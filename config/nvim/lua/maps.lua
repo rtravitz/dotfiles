@@ -25,25 +25,31 @@ map('n', '<leader>tv', ':windo wincmd H<cr>')
 map('n', '<leader>th', ':windo wincmd K<cr>')
 
 -- fuzzy finding with fzf
-map('n', '<leader>ff', require('plugins.telescope').find_files)
-map('n', '<leader>fg', require('plugins.telescope').live_grep)
-map('n', '<leader>fb', require('plugins.telescope').find_buffers)
-map('n', '<leader>fd', require('plugins.telescope').find_dotfiles)
-map('n', '<leader>fs', require('plugins.telescope').lsp_document_symbols)
+map('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+map('n', '<leader>ff', require('plugins.telescope').find_files, { desc = '[F]ind [F]iles'})
+map('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]ind [G]rep'})
+map('n', '<leader>fb', require('plugins.telescope').buffers, { desc = '[F]ind [B]uffers'})
+map('n', '<leader>fc', require('plugins.telescope').find_dotfiles, { desc = '[F]ind [C]onfig'})
+map('n', '<leader>fh', require('plugins.telescope').help_tags, { desc = '[F]ind [H]elp' })
+map('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[F]ind [D]iagnostics' })
+map('n', '<leader>/', function()
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = '[/] Fuzzily search in current buffer]' })
+
+map('n', '<leader>ds', require('telescope.builtin').lsp_document_symbols, { desc = '[D]ocument [S]ymbols' })
+map('n', '<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, { desc = '[W]orkspace [S]ymbols' })
 
 -- nerdtree
 map('n', '\\', ':NvimTreeToggle<cr>')
 map('n', '<leader>nf', ':NvimTreeFindFile<cr>')
 
--- editing and sourcing vimrc, which does not work very well nowadays
-map('n', '<leader>ev', ':vsplit $MYVIMRC<cr>')
-map('n', '<leader>sv', ':source $MYVIMRC<cr>')
-
 -- various file formatters
 map('n', '<leader>j', ':%!jq \'\'<cr>')
 map('n', '<leader>h', ':%!xmllint --format --encode UTF-8 --html -<cr>')
 map('n', '<leader>x', ':%!xmllint --format -<cr>')
-map('n', '<leader>y', ':%!yq r -<cr>')
 
 -- convert markdown buffer to jira's abomination markup syntax
 map('n', '<leader>tj', ':%!pandoc -f markdown -t jira -<cr>')

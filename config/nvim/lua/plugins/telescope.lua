@@ -42,7 +42,7 @@ require('telescope').setup{
   }
 }
 
-require('telescope').load_extension('fzf')
+pcall(require('telescope').load_extension, 'fzf')
 
 local M = {}
 
@@ -88,12 +88,17 @@ M.find_dotfiles = function()
   require('telescope.builtin').find_files(opts)
 end
 
-M.live_grep = function()
-  require('telescope.builtin').live_grep()
-end
+M.help_tags = function()
+  local opts = themes.get_dropdown {
+    previewer = false,
+    hidden = true,
 
-M.lsp_document_symbols = function()
-  require('telescope.builtin').lsp_document_symbols()
+    layout_config = {
+      width = .75,
+    },
+  }
+
+  require('telescope.builtin').help_tags(opts)
 end
 
 return setmetatable({}, {
