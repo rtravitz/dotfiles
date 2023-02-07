@@ -15,6 +15,7 @@ opt.swapfile = false
 
 opt.number = true
 opt.wrap = false
+vim.wo.wrap = false
 
 opt.expandtab = true
 
