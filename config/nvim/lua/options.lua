@@ -19,8 +19,6 @@ vim.wo.wrap = false
 
 opt.expandtab = true
 
-opt.laststatus = 3
-
 opt.expandtab = true
 opt.shiftwidth = 2
 opt.softtabstop = 2
