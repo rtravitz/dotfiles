@@ -13,7 +13,12 @@ return {
           }
         end
       },
-      'j-hui/fidget.nvim',
+      {
+        'j-hui/fidget.nvim',
+        config = function()
+          require('fidget').setup()
+        end
+      },
     },
   },
 }
