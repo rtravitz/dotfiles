@@ -66,4 +66,4 @@ map('n', '–', '<cmd>vertical resize -10<cr>')
 
 map('n', '<leader>r', TmuxRepeat)
 
-map('n', '<leader>pe', require('perforce').checkout)
+map('n', '<leader>pe', require('lab.perforce').checkout)

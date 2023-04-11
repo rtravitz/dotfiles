@@ -6,6 +6,10 @@ local function on_attach(client, bufnr)
     local opts = { noremap=true, silent=true, buffer = bufnr }
     vim.keymap.set('n', key, action, opts)
   end
+  local function vmap(key, action)
+    local opts = { noremap=true, silent=true, buffer = bufnr }
+    vim.keymap.set('v', key, action, opts)
+  end
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   nmap('gd', vim.lsp.buf.definition)
@@ -16,7 +20,8 @@ local function on_attach(client, bufnr)
   --nmap('<C-k>', vim.lsp.buf.signature_help)
   nmap('<space>rn', vim.lsp.buf.rename)
   nmap('<space>ca', vim.lsp.buf.code_action)
-  nmap('<space>f', vim.lsp.buf.formatting)
+  nmap('<space>f', vim.lsp.buf.format)
+  vmap('<space>f', vim.lsp.buf.format)
 
   -- diagnostic
   nmap('<space>e', vim.diagnostic.open_float)
@@ -43,16 +48,14 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-require'lspconfig'.sumneko_lua.setup {
+require'lspconfig'.lua_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT)
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path,
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
@@ -60,7 +63,7 @@ require'lspconfig'.sumneko_lua.setup {
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file('', true),
+        library = vim.api.nvim_get_runtime_file("", true),
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
