@@ -1,12 +1,45 @@
 #!/usr/bin/env bash
 set +x
-green=`tput setaf 2`
-reset=`tput sgr0`
+green=$(tput setaf 2)
+blue=$(tput setaf 4)
+reset=$(tput sgr0)
+
+LINKS=(
+  "config $HOME/.config dir"
+  ".bashrc $HOME/.bashrc"
+  ".inputrc $HOME/.inputrc"
+  ".bash_profile $HOME/.bash_profile"
+  ".zshrc $HOME/.zshrc"
+   "ryan.zsh-theme $HOME/.oh-my-zsh/custom/themes/ryan.zsh-theme"
+  ".tmux.conf $HOME/.tmux.conf"
+  ".npmrc $HOME/.npmrc"
+  ".tool-versions $HOME/.tool-versions"
+)
 
 create_link() {
-  printf '%-20s ➡️ %-30s\n' $1 $2
+  # The linter wants to split robustly with mapfile or read -a,
+  # but just letting the shell split into the array here is fine 
+  # shellcheck disable=SC2206
+  args=($1)
+  dotfiles_path=${args[0]}
+  system_path=${args[1]}
+  is_directory=${args[2]}
+  format_string='%-20s➡️   %s\n'
+
+  if [ "$is_directory" == 'dir' ]; then
+    format_string="${blue}%-20s${reset}➡️   ${blue}%s${reset}\n"
+  fi
+
+  # The double quotes are important in the format string
+  # to keep it from lopping off spaces.
+  # Additionally, the two paths can't be in double quotes
+  # because they'll be concatenated into one argument.
+  # shellcheck disable=SC2059,SC2086
+  printf "$format_string" $dotfiles_path $system_path
+
   # link requires absolute path
-  ln -sfh "$PWD/$1" $2
+  # shellcheck disable=SC2086
+  ln -sfh "$PWD/$dotfiles_path" $system_path
 }
 
 print_success() {
@@ -15,69 +48,18 @@ print_success() {
 
 print_title() {
   printf "%*s\n" '60' '' | sed 's/ /-/g'
-  echo -e "$green$1$reset"
+  print_success "$1"
 }
 
 # Create symlinks, overwriting current
-echo "creating directories and symlinks..."
+print_title "creating directories and symlinks..."
 
-#===========================================
-print_title 'config'
-#===========================================
-dot="config"
-sys="$HOME/.config"
-create_link $dot $sys
+loop_links() {
+  for ((i = 0; i < ${#LINKS[@]}; i++))
+  do
+    create_link "${LINKS[$i]}"
+  done
+}
 
-#===========================================
-print_title 'bash'
-#===========================================
-dot=".bashrc"
-sys="$HOME/.bashrc"
-create_link $dot $sys
-
-dot=".inputrc"
-sys="$HOME/.inputrc"
-create_link $dot $sys
-
-# add .bash_profile on Mac to source ~/.bashrc
-os=$(uname -s)
-if [[ $os =~ Darwin* ]]; then
-  dot=".bash_profile"
-  sys="$HOME/.bash_profile"
-  create_link $dot $sys
-fi
-
-#===========================================
-print_title 'zsh'
-#===========================================
-dot=".zshrc"
-sys="$HOME/.zshrc"
-create_link $dot $sys
-
-dot="ryan.zsh-theme"
-sys="$HOME/.oh-my-zsh/custom/themes/ryan.zsh-theme"
-create_link $dot $sys
-
-#===========================================
-print_title 'tmux'
-#===========================================
-dot=".tmux.conf"
-sys="$HOME/.tmux.conf"
-create_link $dot $sys
-
-#===========================================
-print_title 'npm'
-#===========================================
-dot=".npmrc"
-sys="$HOME/.npmrc"
-create_link $dot $sys
-
-#===========================================
-print_title 'asdf'
-#===========================================
-dot=".tool-versions"
-sys="$HOME/.tool-versions"
-create_link $dot $sys
-
-print_success "\n✅ dotfile install complete!"
+loop_links
 
