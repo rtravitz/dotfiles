@@ -20,7 +20,14 @@ return {
   {
     'williamboman/mason-lspconfig.nvim',
     opts = {
-      ensure_installed = { 'clangd', 'tsserver', 'lua_ls', 'gopls', 'eslint' }
+      ensure_installed = {
+        'clangd',
+        'tsserver',
+        'lua_ls',
+        'gopls',
+        'eslint',
+        'bashls',
+      }
     },
   },
 }

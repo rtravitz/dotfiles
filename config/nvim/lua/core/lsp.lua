@@ -29,7 +29,7 @@ local function on_attach(client, bufnr)
   nmap('<space>dk', vim.diagnostic.goto_prev)
 end
 
-local servers = { 'gopls', 'tsserver', 'clangd' }
+local servers = { 'gopls', 'tsserver', 'clangd', 'bashls' }
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
@@ -42,11 +42,6 @@ for _, lsp in ipairs(servers) do
 end
 
 require'lspconfig'.eslint.setup{}
-
--- Make runtime files discoverable to the server
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
 
 require'lspconfig'.lua_ls.setup {
   capabilities = capabilities,
