@@ -26,7 +26,7 @@ PS1="\[$yellow\]\$(collapsed_wd)>\[$reset\] "
 #=================
 # General
 #=================
-export EDITOR='/usr/local/bin/nvim'
+export EDITOR='/usr/bin/nvim'
 
 # append to the history file, don't overwrite it
 shopt -s histappend
