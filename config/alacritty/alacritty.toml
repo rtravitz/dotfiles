@@ -1,0 +1,9 @@
+[window]
+padding = {x = 2, y = 2}
+
+[colors]
+primary.foreground = '#d8dee9' 
+primary.background = '#1b2b34'
+cursor.text = '#d8dee9' 
+cursor.cursor = '#ec5f67' 
+
