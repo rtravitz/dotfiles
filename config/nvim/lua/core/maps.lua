@@ -46,7 +46,7 @@ map('n', '<leader>nf', '<cmd>NvimTreeFindFile<cr>')
 -- various file formatters
 map('n', '<leader>j', '<cmd>%!jq \'\'<cr>')
 map('n', '<leader>h', '<cmd>%!xmllint --format --encode UTF-8 --html -<cr>')
-map('n', '<leader>x', '<cmd>%!xmllint --format -<cr>')
+-- map('n', '<leader>x', '<cmd>%!xmllint --format -<cr>')
 
 -- convert markdown buffer to jira's abomination markup syntax
 map('n', '<leader>tj', '<cmd>%!pandoc -f markdown -t jira -<cr>')
@@ -67,3 +67,5 @@ map('n', '–', '<cmd>vertical resize -10<cr>')
 map('n', '<leader>r', TmuxRepeat)
 
 map('n', '<leader>pe', require('lab.perforce').checkout)
+
+map('n', '<leader>x', '<cmd>lua dofile(vim.fn.expand("%"))<cr>')
