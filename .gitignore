@@ -6,3 +6,4 @@ config/exercism/user.json
 config/nvim/.luarc.json
 config/qBittorrent
 config/wireshark
+.tool-versions
