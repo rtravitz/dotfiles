@@ -5,7 +5,10 @@ blue=$(tput setaf 4)
 reset=$(tput sgr0)
 
 LINKS=(
-  "config $HOME/.config dir"
+  "config/nvim $HOME/.config/nvim dir"
+  "config/gh $HOME/.config/gh dir"
+  "config/git $HOME/.config/git dir"
+  "config/alacritty $HOME/.config/alacritty dir"
   ".bashrc $HOME/.bashrc"
   ".inputrc $HOME/.inputrc"
   ".bash_profile $HOME/.bash_profile"
@@ -39,7 +42,12 @@ create_link() {
 
   # link requires absolute path
   # shellcheck disable=SC2086
-  ln -sfh "$PWD/$dotfiles_path" $system_path
+
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    ln -sfn "$PWD/$dotfiles_path" $system_path
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    ln -sfh "$PWD/$dotfiles_path" $system_path
+  fi
 }
 
 print_success() {

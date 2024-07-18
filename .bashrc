@@ -18,21 +18,64 @@ dashed_line() {
 # may not be portable across terminals. tput generates
 # the correct sequences for a terminal.
 # http://mywiki.wooledge.org/BashFAQ/053
-yellow=$(tput setaf 3)
-reset=$(tput sgr0)
+# tput error on linux startup: https://unix.stackexchange.com/questions/208982/tput-no-value-for-term-and-no-t-specified
+if [ -t 1 ]; then
+  yellow=$(tput setaf 3)
+  reset=$(tput sgr0)
+fi
 
 PS1="\[$yellow\]\$(collapsed_wd)>\[$reset\] "
 
 #=================
+# OS Specific
+#=================
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  export EDITOR='/home/ryan/dev/tools/nvim-linux64/bin/nvim'
+
+  alias bat='batcat'
+  alias fd='fdfind'
+
+  # Neovim installation
+  export PATH="$PATH:$HOME/dev/tools/nvim-linux64/bin"
+
+  . "$HOME/dev/tools/asdf/asdf.sh"
+  . "$HOME/dev/tools/asdf/completions/asdf.bash"
+
+  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+  source /usr/share/doc/fzf/examples/key-bindings.bash
+
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  export EDITOR='/usr/local/bin/nvim'
+
+  alias ibrew='arch -x86_64 /usr/local/bin/brew'
+  
+  # Homebrew Apple Silicon
+  export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+  # FZF
+  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+  # ASDF
+  . $(brew --prefix asdf)/libexec/asdf.sh
+  . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+  
+  # TODO: which of these two bash completions actually does it on Mac nowadays?
+  # I think having both is a holdover from intel vs arm transition.
+  
+  # bash completions
+  [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+      . $(brew --prefix)/etc/bash_completion
+  fi
+
+  # Bash completion
+  [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+fi
+
+#=================
 # General
 #=================
-export EDITOR='/usr/local/bin/nvim'
-
-# bash completions
-[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -67,7 +110,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CaF'
 alias gco='git checkout'
-alias ibrew='arch -x86_64 /usr/local/bin/brew'
 alias tmn='tmux new -s'
 alias tma='tmux attach -t'
 alias tmk='tmux kill-session -t'
@@ -77,7 +119,7 @@ alias tmuxconf='nvim ~/.tmux.conf'
 alias bs='source ~/.bash_profile'
 alias bashrc='nvim ~/.bashrc'
 alias vimrc='nvim ~/.config/nvim/init.vim'
-alias alac='nvim ~/.config/alacritty/alacritty.yml'
+alias alac='nvim ~/.config/alacritty/alacritty.toml'
 alias vbr="git reflog | grep -o \"checkout: moving from .* to \" |\
     sed -e 's/checkout: moving from //' -e 's/ to $//' | head -10 | grep -v 'master'"
 alias del-merged='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
@@ -134,30 +176,8 @@ export FZF_DEFAULT_COMMAND='rg \
 # ================
 export BAT_THEME=TwoDark
 
-# ================
-# Homebrew Apple Silicon
-# ================
-export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
-
-# ================
-# FZF
-# ================
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.bash
-
 #=================
 # Secrets
 #=================
 [ -f ~/.secrets ] && source ~/.secrets
 
-# ================
-# ASDF
-# ================
-. $(brew --prefix asdf)/libexec/asdf.sh
-. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
-
-
-# ================
-# Bash completion
-# ================
-[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
