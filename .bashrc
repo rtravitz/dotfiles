@@ -71,6 +71,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
   # Bash completion
   [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+
+  # Something for Bradfield
+  export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
 fi
 
 #=================
