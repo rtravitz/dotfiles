@@ -12,11 +12,13 @@ LINKS=(
   ".bashrc $HOME/.bashrc"
   ".inputrc $HOME/.inputrc"
   ".bash_profile $HOME/.bash_profile"
-  ".zshrc $HOME/.zshrc"
-   "ryan.zsh-theme $HOME/.oh-my-zsh/custom/themes/ryan.zsh-theme"
   ".tmux.conf $HOME/.tmux.conf"
   ".npmrc $HOME/.npmrc"
-  ".tool-versions $HOME/.tool-versions"
+)
+
+MAC_LINKS=(
+  ".zshrc $HOME/.zshrc"
+  "ryan.zsh-theme $HOME/.oh-my-zsh/custom/themes/ryan.zsh-theme"
 )
 
 create_link() {
@@ -61,8 +63,19 @@ loop_links() {
   done
 }
 
+loop_mac_links() {
+  for ((i = 0; i < ${#MAC_LINKS[@]}; i++))
+  do
+    create_link "${MAC_LINKS[$i]}"
+  done
+}
+
 # Create symlinks, overwriting current
 print_title "creating directories and symlinks..."
 mkdir -p "$HOME/.config"
 loop_links
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  loop_mac_links
+fi
 
