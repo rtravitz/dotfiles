@@ -42,12 +42,7 @@ create_link() {
 
   # link requires absolute path
   # shellcheck disable=SC2086
-
-  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    ln -sfn "$PWD/$dotfiles_path" $system_path
-  elif [[ "$OSTYPE" == "darwin"* ]]; then
-    ln -sfh "$PWD/$dotfiles_path" $system_path
-  fi
+  ln -sfn "$PWD/$dotfiles_path" $system_path
 }
 
 print_success() {
@@ -59,9 +54,6 @@ print_title() {
   print_success "$1"
 }
 
-# Create symlinks, overwriting current
-print_title "creating directories and symlinks..."
-
 loop_links() {
   for ((i = 0; i < ${#LINKS[@]}; i++))
   do
@@ -69,5 +61,8 @@ loop_links() {
   done
 }
 
+# Create symlinks, overwriting current
+print_title "creating directories and symlinks..."
+mkdir -p "$HOME/.config"
 loop_links
 
