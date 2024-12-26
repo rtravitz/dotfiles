@@ -9,6 +9,7 @@ LINKS=(
   "config/gh $HOME/.config/gh dir"
   "config/git $HOME/.config/git dir"
   "config/alacritty $HOME/.config/alacritty dir"
+  "config/ghostty $HOME/.config/ghostty dir"
   ".bashrc $HOME/.bashrc"
   ".inputrc $HOME/.inputrc"
   ".bash_profile $HOME/.bash_profile"
