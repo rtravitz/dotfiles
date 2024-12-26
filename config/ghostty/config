@@ -1,5 +1,12 @@
 font-family = 
+
+background = #1b2b34
+
 cursor-text = #d8dee9
 cursor-color = #ec5f67
-cursor-style = block
-cursor-style-blink = false
+
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:bottom
+keybind = ctrl+shift+k=goto_split:top
+keybind = ctrl+shift+l=goto_split:right
+

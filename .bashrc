@@ -123,6 +123,7 @@ alias bs='source ~/.bash_profile'
 alias bashrc='nvim ~/.bashrc'
 alias vimrc='nvim ~/.config/nvim/init.vim'
 alias alac='nvim ~/.config/alacritty/alacritty.toml'
+alias gty='nvim ~/.config/ghostty/config'
 alias vbr="git reflog | grep -o \"checkout: moving from .* to \" |\
     sed -e 's/checkout: moving from //' -e 's/ to $//' | head -10 | grep -v 'master'"
 alias del-merged='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
