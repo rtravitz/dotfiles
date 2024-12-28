@@ -29,7 +29,7 @@ local function on_attach(client, bufnr)
   nmap('<space>dk', vim.diagnostic.goto_prev)
 end
 
-local servers = { 'gopls', 'tsserver', 'clangd', 'bashls' }
+local servers = { 'gopls', 'ts_ls', 'clangd', 'bashls' }
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {

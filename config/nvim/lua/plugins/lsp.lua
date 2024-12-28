@@ -22,7 +22,7 @@ return {
     opts = {
       ensure_installed = {
         'clangd',
-        'tsserver',
+        'ts_ls',
         'lua_ls',
         'gopls',
         'eslint',
