@@ -39,6 +39,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # Neovim installation
   export PATH="$PATH:$HOME/dev/tools/nvim-linux64/bin"
 
+  # ASDF
   . "$HOME/dev/tools/asdf/asdf.sh"
   . "$HOME/dev/tools/asdf/completions/asdf.bash"
 
@@ -58,7 +59,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
   # ASDF
   . $(brew --prefix asdf)/libexec/asdf.sh
-  . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+  . $(brew --prefix asdf)/etc/bash_completion.d/asdf
   
   # TODO: which of these two bash completions actually does it on Mac nowadays?
   # I think having both is a holdover from intel vs arm transition.
