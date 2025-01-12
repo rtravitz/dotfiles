@@ -4,6 +4,7 @@ This repo holds my configuration files for some of my frequently used tools:
 - [Neovim](https://neovim.io/)
 - [Tmux](https://github.com/tmux/tmux)
 - [Alacritty](https://github.com/jwilm/alacritty)
+- [Ghostty](https://github.com/ghostty-org/ghostty)
 - [Git](https://git-scm.com/)
 - [Bash](https://www.gnu.org/software/bash/)
 
@@ -20,3 +21,4 @@ I change back and forth between a handful of fonts. Sometimes things start to ge
 - [Cascadia Code](https://github.com/microsoft/cascadia-code)
 - [Hack](https://github.com/source-foundry/Hack)
 - [Iosevka](https://github.com/be5invis/Iosevka)
+- [Jetbrains Mono](https://www.jetbrains.com/lp/mono/)

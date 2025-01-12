@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
 
-# grab lines from packages.txt that don't start with a '#'
-# and are not blank and brew install each of them
-cat packages-macos.txt | grep -Ev '(^#|^$)' | xargs -n1 brew install
-echo '🛠️ install script complete'
+if ! type brew > /dev/null; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+brew install \
+  asdf \
+  bash \
+  git \
+  git-delta \
+  bat \
+  fd \
+  fzf \
+  jq \
+  neovim \
+  ripgrep
 
