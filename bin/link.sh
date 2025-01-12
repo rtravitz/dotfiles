@@ -10,15 +10,15 @@ LINKS=(
   "config/git $HOME/.config/git dir"
   "config/alacritty $HOME/.config/alacritty dir"
   "config/ghostty $HOME/.config/ghostty dir"
+  "config/tmux $HOME/.config/tmux dir"
   ".bashrc $HOME/.bashrc"
   ".inputrc $HOME/.inputrc"
-  ".bash_profile $HOME/.bash_profile"
-  ".tmux.conf $HOME/.tmux.conf"
   ".npmrc $HOME/.npmrc"
 )
 
 MAC_LINKS=(
   ".zshrc $HOME/.zshrc"
+  ".bash_profile $HOME/.bash_profile"
   "ryan.zsh-theme $HOME/.oh-my-zsh/custom/themes/ryan.zsh-theme"
 )
 
