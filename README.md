@@ -21,4 +21,4 @@ I change back and forth between a handful of fonts. Sometimes things start to ge
 - [Cascadia Code](https://github.com/microsoft/cascadia-code)
 - [Hack](https://github.com/source-foundry/Hack)
 - [Iosevka](https://github.com/be5invis/Iosevka)
-- [Jetbrains Mono](https://www.jetbrains.com/lp/mono/)
+- [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
