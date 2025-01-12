@@ -10,10 +10,6 @@ collapsed_wd() {
 ')
 }
 
-dashed_line() {
-  printf "%*s" $(tput cols) "" | sed "s/ /-/g"
-}
-
 # avoid using escape sequences for colors, because they
 # may not be portable across terminals. tput generates
 # the correct sequences for a terminal.
@@ -134,27 +130,9 @@ alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_pl
 export PATH="$HOME/bin:$PATH"
 
 #=================
-# Ruby
-#=================
-alias be='bundle exec'
-export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin"
-
-#=================
-# Javascript
-#=================
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$HOME/workspace/tools/.npm-packages/bin:$PATH"
-
-#=================
-# Go
-#=================
-export PATH="$PATH:$HOME/workspace/tools/go/bin"
-
-#=================
 # CPP
 #=================
 export PATH="/usr/local/opt/llvm/bin:$PATH"
-
 
 # ================
 # FZF
