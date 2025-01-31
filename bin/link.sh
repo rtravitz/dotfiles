@@ -5,15 +5,15 @@ blue=$(tput setaf 4)
 reset=$(tput sgr0)
 
 LINKS=(
-  "config/nvim $HOME/.config/nvim dir"
-  "config/gh $HOME/.config/gh dir"
-  "config/git $HOME/.config/git dir"
+  "config/nvim      $HOME/.config/nvim      dir"
+  "config/gh        $HOME/.config/gh        dir"
+  "config/git       $HOME/.config/git       dir"
   "config/alacritty $HOME/.config/alacritty dir"
-  "config/ghostty $HOME/.config/ghostty dir"
-  "config/tmux $HOME/.config/tmux dir"
-  ".bashrc $HOME/.bashrc"
-  ".inputrc $HOME/.inputrc"
-  ".npmrc $HOME/.npmrc"
+  "config/ghostty   $HOME/.config/ghostty   dir"
+  "config/tmux      $HOME/.config/tmux      dir"
+  ".bashrc          $HOME/.bashrc"
+  ".inputrc         $HOME/.inputrc"
+  ".npmrc           $HOME/.npmrc"
 )
 
 MAC_LINKS=(
