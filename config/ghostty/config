@@ -5,6 +5,8 @@ background = #1b2b34
 cursor-text = #d8dee9
 cursor-color = #ec5f67
 
+font-feature = -calt
+
 keybind = alt+h=goto_split:left
 keybind = alt+j=goto_split:bottom
 keybind = alt+k=goto_split:top
