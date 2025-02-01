@@ -41,7 +41,17 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-require'lspconfig'.eslint.setup{}
+require'lspconfig'.eslint.setup{
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    local opts = { noremap=true, silent=true, buffer = bufnr }
+    vim.keymap.set('n', '<space>af', '<cmd>EslintFixAll<cr>', opts)
+  end,
+  flags = {
+    debounce_text_changes = 150,
+  }
+}
 
 require'lspconfig'.lua_ls.setup {
   capabilities = capabilities,
