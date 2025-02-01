@@ -1,5 +1,4 @@
 return {
-  'mhartington/oceanic-next',
   'tpope/vim-repeat',
   'tpope/vim-surround',
   'tpope/vim-fugitive',

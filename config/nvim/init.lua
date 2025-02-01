@@ -8,11 +8,13 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",
     lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
+
+require('core.oceanic-next') -- needs to come before plugins for lualine to get scheme
 
 require('lazy').setup('plugins')
 
