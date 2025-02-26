@@ -36,7 +36,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   export PATH="$PATH:$HOME/dev/tools/nvim-linux64/bin"
 
   # ASDF
-  . "$HOME/dev/tools/asdf/asdf.sh"
+  export ASDF_DATA_DIR="/home/ryan/.asdf"
+  export PATH="$ASDF_DATA_DIR/shims:$PATH"
   . "$HOME/dev/tools/asdf/completions/asdf.bash"
 
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -54,7 +55,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
   # ASDF
-  . $(brew --prefix asdf)/libexec/asdf.sh
+  export ASDF_DATA_DIR="/Users/ryan/.asdf"
+  export PATH="$ASDF_DATA_DIR/shims:$PATH"
   . $(brew --prefix asdf)/etc/bash_completion.d/asdf
   
   # TODO: which of these two bash completions actually does it on Mac nowadays?

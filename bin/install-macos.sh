@@ -14,5 +14,6 @@ brew install \
   fzf \
   jq \
   neovim \
-  ripgrep
+  ripgrep \
+  tmux
 
