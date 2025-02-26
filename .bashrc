@@ -40,9 +40,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   export PATH="$ASDF_DATA_DIR/shims:$PATH"
   . "$HOME/dev/tools/asdf/completions/asdf.bash"
 
-  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-  source /usr/share/doc/fzf/examples/key-bindings.bash
-
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   export EDITOR='/usr/local/bin/nvim'
 
@@ -50,9 +47,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   
   # Homebrew Apple Silicon
   export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
-
-  # FZF
-  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
   # ASDF
   export ASDF_DATA_DIR="/Users/ryan/.asdf"
@@ -155,6 +149,9 @@ export FZF_DEFAULT_COMMAND='rg \
   --glob "!node_modules/*" \
   --glob "!.npm/*" \
   --glob "!dist/*"'
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
 
 # ================
 # Bat
