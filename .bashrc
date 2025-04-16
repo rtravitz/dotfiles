@@ -22,13 +22,14 @@ fi
 
 PS1="\[$yellow\]\$(collapsed_wd)>\[$reset\] "
 
+NVIM_PATH="$(which nvim)"
+export EDITOR=$NVIM_PATH
+
 #=================
 # OS Specific
 #=================
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  export EDITOR='/home/ryan/dev/tools/nvim-linux64/bin/nvim'
-
   alias bat='batcat'
   alias fd='fdfind'
 
@@ -41,8 +42,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   . "$HOME/dev/tools/asdf/completions/asdf.bash"
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  export EDITOR='/usr/local/bin/nvim'
-
   alias ibrew='arch -x86_64 /usr/local/bin/brew'
   
   # Homebrew Apple Silicon
@@ -51,22 +50,22 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   # ASDF
   export ASDF_DATA_DIR="/Users/ryan/.asdf"
   export PATH="$ASDF_DATA_DIR/shims:$PATH"
-  . $(brew --prefix asdf)/etc/bash_completion.d/asdf
-  
-  # TODO: which of these two bash completions actually does it on Mac nowadays?
-  # I think having both is a holdover from intel vs arm transition.
-  
-  # bash completions
-  [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-      . $(brew --prefix)/etc/bash_completion
+
+  # Bash Completions
+  # https://docs.brew.sh/Shell-Completion
+  if type brew &>/dev/null
+  then
+    HOMEBREW_PREFIX="$(brew --prefix)"
+    if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
+    then
+      source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+    else
+      for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+      do
+        [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+      done
+    fi
   fi
-
-  # Bash completion
-  [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-
-  # Something for Bradfield
-  export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
 fi
 
 #=================
@@ -96,12 +95,10 @@ fi
 #=================
 # Aliases
 #=================
-alias vi='nvim'
-alias vim='nvim'
 alias dotfiles='cd ~/dev/dotfiles'
 alias workspace='cd ~/workspace'
 alias dc='docker-compose'
-alias today="nvim $HOME/dev/today.md"
+alias todo="nvim $HOME/notes/todo.md"
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CaF'
@@ -121,6 +118,8 @@ alias vbr="git reflog | grep -o \"checkout: moving from .* to \" |\
     sed -e 's/checkout: moving from //' -e 's/ to $//' | head -10 | grep -v 'master'"
 alias del-merged='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
 alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
+alias cnotes='cd ~/notes'
+alias cdev='cd ~/dev'
 
 # Add bin for user
 export PATH="$HOME/bin:$PATH"

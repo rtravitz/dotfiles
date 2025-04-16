@@ -7,6 +7,7 @@ fi
 brew install \
   asdf \
   bash \
+  bash-completion@2 \
   git \
   git-delta \
   bat \
