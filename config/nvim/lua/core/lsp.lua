@@ -1,11 +1,10 @@
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local function on_attach(client, bufnr)
   local function nmap(key, action)
-    local opts = { noremap=true, silent=true, buffer = bufnr }
+    local opts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set('n', key, action, opts)
   end
   local function vmap(key, action)
-    local opts = { noremap=true, silent=true, buffer = bufnr }
+    local opts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set('v', key, action, opts)
   end
 
@@ -31,7 +30,6 @@ local default_config_servers = { 'gopls', 'ts_ls', 'clangd', 'bashls' }
 
 for _, server in ipairs(default_config_servers) do
   vim.lsp.config(server, {
-    capabilities = capabilities,
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
@@ -42,10 +40,9 @@ for _, server in ipairs(default_config_servers) do
 end
 
 vim.lsp.config('eslint', {
-  capabilities = capabilities,
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
-    local opts = { noremap=true, silent=true, buffer = bufnr }
+    local opts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set('n', '<space>af', '<cmd>EslintFixAll<cr>', opts)
   end,
   flags = {
@@ -55,7 +52,6 @@ vim.lsp.config('eslint', {
 vim.lsp.enable('eslint')
 
 vim.lsp.config('lua_ls', {
-  capabilities = capabilities,
   on_attach = on_attach,
   settings = {
     Lua = {
@@ -65,7 +61,7 @@ vim.lsp.config('lua_ls', {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -81,9 +77,20 @@ vim.lsp.config('lua_ls', {
 vim.lsp.enable('lua_ls')
 
 --vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  --vim.lsp.diagnostic.on_publish_diagnostics, {
-    --virtual_text = false,
-    --underline = true,
-    --signs = true,
-  --}
+--vim.lsp.diagnostic.on_publish_diagnostics, {
+--virtual_text = false,
+--underline = true,
+--signs = true,
+--}
 --)
+--
+--
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client:supports_method('textDocument/completion') then
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+    end
+  end,
+})
