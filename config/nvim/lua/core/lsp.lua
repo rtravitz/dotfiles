@@ -1,6 +1,4 @@
-local nvim_lsp = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 local function on_attach(client, bufnr)
   local function nmap(key, action)
     local opts = { noremap=true, silent=true, buffer = bufnr }
@@ -29,19 +27,21 @@ local function on_attach(client, bufnr)
   nmap('<space>dk', vim.diagnostic.goto_prev)
 end
 
-local servers = { 'gopls', 'ts_ls', 'clangd', 'bashls' }
+local default_config_servers = { 'gopls', 'ts_ls', 'clangd', 'bashls' }
 
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+for _, server in ipairs(default_config_servers) do
+  vim.lsp.config(server, {
     capabilities = capabilities,
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
     }
-  }
+  })
+
+  vim.lsp.enable(server)
 end
 
-require'lspconfig'.eslint.setup{
+vim.lsp.config('eslint', {
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
@@ -51,9 +51,10 @@ require'lspconfig'.eslint.setup{
   flags = {
     debounce_text_changes = 150,
   }
-}
+})
+vim.lsp.enable('eslint')
 
-require'lspconfig'.lua_ls.setup {
+vim.lsp.config('lua_ls', {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -76,12 +77,13 @@ require'lspconfig'.lua_ls.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable('lua_ls')
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
-    underline = true,
-    signs = true,
-  }
-)
+--vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  --vim.lsp.diagnostic.on_publish_diagnostics, {
+    --virtual_text = false,
+    --underline = true,
+    --signs = true,
+  --}
+--)

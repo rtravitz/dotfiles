@@ -40,7 +40,7 @@ map('n', '<leader>ds', require('telescope.builtin').lsp_document_symbols, { desc
 map('n', '<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, { desc = '[W]orkspace [S]ymbols' })
 
 -- nvim tree
-map('n', '\\', '<cmd>NvimTreeToggle<cr>')
+map('n', '\\', '<cmd>Oil<cr>')
 map('n', '<leader>nf', '<cmd>NvimTreeFindFile<cr>')
 
 -- various file formatters
