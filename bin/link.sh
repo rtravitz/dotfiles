@@ -17,9 +17,13 @@ LINKS=(
 )
 
 MAC_LINKS=(
-  ".zshrc $HOME/.zshrc"
-  ".bash_profile $HOME/.bash_profile"
-  "ryan.zsh-theme $HOME/.oh-my-zsh/custom/themes/ryan.zsh-theme"
+  ".zshrc           $HOME/.zshrc"
+  ".bash_profile    $HOME/.bash_profile"
+  "ryan.zsh-theme   $HOME/.oh-my-zsh/custom/themes/ryan.zsh-theme"
+)
+
+LINUX_LINKS=(
+  "config/hypr      $HOME/.config/hypr      dir"
 )
 
 create_link() {
@@ -64,6 +68,13 @@ loop_links() {
   done
 }
 
+loop_linux_links() {
+  for ((i = 0; i < ${#LINUX_LINKS[@]}; i++))
+  do
+    create_link "${LINUX_LINKS[$i]}"
+  done
+}
+
 loop_mac_links() {
   for ((i = 0; i < ${#MAC_LINKS[@]}; i++))
   do
@@ -78,5 +89,7 @@ loop_links
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   loop_mac_links
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  loop_linux_links
 fi
 

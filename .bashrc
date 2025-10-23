@@ -22,26 +22,19 @@ fi
 
 PS1="\[$yellow\]\$(collapsed_wd)>\[$reset\] "
 
-NVIM_PATH="$(which nvim)"
-export EDITOR=$NVIM_PATH
-
-# ASDF
-export ASDF_DATA_DIR="$HOME/.asdf"
-export PATH="$ASDF_DATA_DIR/shims:$PATH"
-
 #=================
 # OS Specific
 #=================
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  alias bat='batcat'
-  alias fd='fdfind'
+  DISTRO=$(grep '^ID' /etc/os-release | cut -d '=' -f2)
+  if [[ "$DISTRO" != "arch" ]]; then
+    alias bat='batcat'
+    alias fd='fdfind'
+  fi
 
   # Neovim installation
   export PATH="$PATH:$HOME/dev/tools/nvim-linux-x86_64/bin"
-
-  # ASDF
-  . "$HOME/dev/tools/asdf/completions/asdf.bash"
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   alias ibrew='arch -x86_64 /usr/local/bin/brew'
@@ -69,6 +62,15 @@ fi
 #=================
 # General
 #=================
+
+# ASDF
+export ASDF_DATA_DIR="$HOME/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
+. <(asdf completion bash)
+
+# Editor
+NVIM_PATH="$(which nvim)"
+export EDITOR=$NVIM_PATH
 
 # append to the history file, don't overwrite it
 shopt -s histappend
