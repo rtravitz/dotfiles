@@ -24,5 +24,6 @@ pacman -S \
   wireplumber \
   playerctl \
   pavucontrol \
-  spotify-launcher 
+  spotify-launcher \
+  networkmanager
 
