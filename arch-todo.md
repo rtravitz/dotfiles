@@ -4,6 +4,8 @@
 - prettier launcher
 - reduce time to key repeat
 - wallpaper is messed up again
+- better lock screen
+- 1password
 
 ### DONE
 - change alias for fd and batcat

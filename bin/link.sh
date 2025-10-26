@@ -24,6 +24,7 @@ MAC_LINKS=(
 
 LINUX_LINKS=(
   "config/hypr      $HOME/.config/hypr      dir"
+  "config/waybar    $HOME/.config/waybar    dir"
 )
 
 create_link() {
