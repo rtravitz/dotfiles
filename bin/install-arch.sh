@@ -2,6 +2,7 @@ pacman -S \
   firefox \
   ghostty \
   hyprpaper \
+  hyprlock \
   tmux \
   git \
   less \

@@ -1,9 +1,8 @@
 # TODO
-- settings menu
-- prettier launcher
 - reduce time to key repeat
-- wallpaper is messed up again
 - better lock screen
+- border colors
+- gtk themes
 
 ### DONE
 - change alias for fd and batcat
@@ -14,6 +13,7 @@
 - audio switching
 - waybar for top toolbar
 - 1password
+- prettier launcher
 
 # Additional Steps
 - systemctl --user enable pipewire-pulse
