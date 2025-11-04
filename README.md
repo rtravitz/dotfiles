@@ -3,7 +3,6 @@
 This repo holds my configuration files for some of my frequently used tools:
 - [Neovim](https://neovim.io/)
 - [Tmux](https://github.com/tmux/tmux)
-- [Alacritty](https://github.com/jwilm/alacritty)
 - [Ghostty](https://github.com/ghostty-org/ghostty)
 - [Git](https://git-scm.com/)
 - [Bash](https://www.gnu.org/software/bash/)
