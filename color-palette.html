@@ -13,6 +13,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
+        transition: transform 0.1s ease;
+      }
+
+      .swatch:active {
+        transform: scale(0.95);
       }
 
       .label {
@@ -61,6 +67,31 @@
         <div class="swatch" style="background: #ab7967"><span class="label">#ab7967</span></div>
       </div>
     </div>
+    <script>
+      document.querySelectorAll('.swatch').forEach(swatch => {
+        swatch.addEventListener('click', async () => {
+          const label = swatch.querySelector('.label');
+          const colorValue = label.textContent.trim();
+
+          try {
+            await navigator.clipboard.writeText(colorValue);
+            // Visual feedback: briefly change label text
+            const originalText = label.textContent;
+            label.textContent = 'Copied!';
+            label.style.background = '#4caf50';
+            label.style.color = 'white';
+
+            setTimeout(() => {
+              label.textContent = originalText;
+              label.style.background = 'white';
+              label.style.color = 'black';
+            }, 1000);
+          } catch (err) {
+            console.error('Failed to copy:', err);
+          }
+        });
+      });
+    </script>
   </body>
 </html>
 
