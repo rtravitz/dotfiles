@@ -25,6 +25,10 @@ PS1="\[$yellow\]\$(collapsed_wd)>\[$reset\] "
 NVIM_PATH="$(which nvim)"
 export EDITOR=$NVIM_PATH
 
+# ASDF
+export ASDF_DATA_DIR="$HOME/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
+
 #=================
 # OS Specific
 #=================
@@ -34,11 +38,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   alias fd='fdfind'
 
   # Neovim installation
-  export PATH="$PATH:$HOME/dev/tools/nvim-linux64/bin"
+  export PATH="$PATH:$HOME/dev/tools/nvim-linux-x86_64/bin"
 
   # ASDF
-  export ASDF_DATA_DIR="/home/ryan/.asdf"
-  export PATH="$ASDF_DATA_DIR/shims:$PATH"
   . "$HOME/dev/tools/asdf/completions/asdf.bash"
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -46,10 +48,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   
   # Homebrew Apple Silicon
   export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
-
-  # ASDF
-  export ASDF_DATA_DIR="/Users/ryan/.asdf"
-  export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
   # Bash Completions
   # https://docs.brew.sh/Shell-Completion

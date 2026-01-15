@@ -5,9 +5,12 @@ set -e
 green=$(tput setaf 2)
 reset=$(tput sgr0)
 
+name="nvim-linux-x86_64"
+tar_name="$name.tar.gz"
+
 latest_json=$(curl -s 'https://api.github.com/repos/neovim/neovim/releases/latest') 
 version_tag=$(jq -r '.tag_name' <<< "$latest_json")
-download_link=$(jq -r '.assets[] | select(.name == "nvim-linux64.tar.gz") | .browser_download_url' <<< "$latest_json")
+download_link=$(jq -r --arg name "$tar_name" '.assets[] | select(.name == $name) | .browser_download_url' <<< "$latest_json")
 
 tools_dir="$HOME/dev/tools" 
 echo "Moving to $tools_dir"
@@ -17,11 +20,12 @@ cd $tools_dir
 echo "Downloading neovim version $version_tag"
 wget -q $download_link
 
-temp_name="nvim-linux64-OLD"
-echo "Setting old version aside to $temp_name"
-mv nvim-linux64 $temp_name
+if [ -d "$name" ]; then
+  temp_name="$name-OLD"
+  echo "Setting old version aside to $temp_name"
+  mv $name $temp_name
+fi
 
-tar_name="nvim-linux64.tar.gz"
 echo "Extracting files"
 tar xzf "$tar_name"
 
