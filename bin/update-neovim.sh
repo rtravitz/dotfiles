@@ -27,7 +27,7 @@ if [ -d "$name" ]; then
 fi
 
 echo "Extracting files"
-tar xzf "$tar_name"
+tar -xzf "$tar_name"
 
 echo "Removing $temp_name and $tar_name"
 rm -rf "$temp_name"
