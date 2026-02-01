@@ -1,4 +1,4 @@
-pacman -S \
+sudo pacman -S \
   firefox \
   ghostty \
   hyprpaper \
@@ -26,5 +26,10 @@ pacman -S \
   playerctl \
   pavucontrol \
   spotify-launcher \
-  networkmanager
+  networkmanager \
+  waybar \
+  which \
+  less \
+  ttf-nerd-fonts-symbols \
+  sbctl
 
