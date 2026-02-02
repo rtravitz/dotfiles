@@ -1,23 +1,27 @@
+#!/usr/bin/env bash
+
 sudo pacman -S \
+  bash-completion \
+  bat \
+  clang \
+  fd \
+  fzf \
+  git \
+  git-delta \
+  jq \
+  less \
+  ripgrep \
+  tmux \
+  unzip \
   firefox \
   ghostty \
+  spotify-launcher \
   hyprpaper \
   hyprlock \
-  tmux \
-  git \
-  less \
-  fzf \
-  clang \
-  unzip \
-  bat \
-  fd \
-  git-delta \
-  ripgrep \
-  bash-completion \
-  jq \
   bluez \
   bluez-utils \
   bluetui \
+  blueman \
   pipewire \
   pipewire-audio \
   pipewire-pulse \
@@ -25,7 +29,6 @@ sudo pacman -S \
   wireplumber \
   playerctl \
   pavucontrol \
-  spotify-launcher \
   networkmanager \
   waybar \
   which \
