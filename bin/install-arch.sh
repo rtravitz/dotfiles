@@ -8,6 +8,7 @@ sudo pacman -S \
   fzf \
   git \
   git-delta \
+  github-cli \
   jq \
   less \
   ripgrep \
