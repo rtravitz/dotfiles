@@ -23,9 +23,10 @@ MAC_LINKS=(
 )
 
 LINUX_LINKS=(
-  "config/hypr      $HOME/.config/hypr      dir"
-  "config/waybar    $HOME/.config/waybar    dir"
-  "config/wofi      $HOME/.config/wofi      dir"
+  "config/hypr        $HOME/.config/hypr      dir"
+  "config/waybar      $HOME/.config/waybar    dir"
+  "config/wofi        $HOME/.config/wofi      dir"
+  "config/flameshot   $HOME/.config/flameshot dir"
 )
 
 create_link() {

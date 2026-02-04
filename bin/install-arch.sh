@@ -28,6 +28,7 @@ install "
   firefox
   ghostty
   spotify-launcher
+  flameshot
 "
 
 # Hyprland
