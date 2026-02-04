@@ -36,3 +36,16 @@ sudo sbctl sign -s /boot/EFI/refind/refind_x64.efi
 sudo sbctl verify
 sudo reboot
 ```
+
+You need to create a pacman hook for refind if you want the bootloader executables to be upgraded whenever the package gets upgraded. Here's my hook for reference. You can place it in `/etc/pacman.d/hooks`:
+```
+[Trigger]
+Operation=Upgrade
+Type=Package
+Target=refind
+
+[Action]
+Description = Updating rEFInd on ESP
+When=PostTransaction
+Exec=/bin/sh -c '/usr/bin/refind-install --yes; /usr/bin/sbctl sign-all'
+```
