@@ -55,6 +55,17 @@ case "$requested_app" in
     mkdir -p $BIN_DIR
     mv /tmp/asdf $BIN_DIR
     ;;
+  "fzf")
+    # fzf comes as a single binary, so it can just be extracted
+    # to /tmp and moved to the user's bin directory, which is added to
+    # the path for this and other purposes in .bashrc.
+    fetch_release_info "linux_amd64" "junegunn/fzf"
+    cd /tmp
+    download_and_extract_tar_from_url
+
+    mkdir -p $BIN_DIR
+    mv /tmp/fzf $BIN_DIR
+    ;;
   *)
     echo "Please provide a valid software name to update."
     exit 1 
