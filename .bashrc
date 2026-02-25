@@ -63,6 +63,9 @@ fi
 # General
 #=================
 
+# Add bin for user
+export PATH="$HOME/bin:$PATH"
+
 # ASDF
 export ASDF_DATA_DIR="$HOME/.asdf"
 export PATH="$ASDF_DATA_DIR/shims:$PATH"
@@ -120,9 +123,6 @@ alias del-merged='git branch --merged | egrep -v "(^\*|master)" | xargs git bran
 alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
 alias cnotes='cd ~/notes'
 alias cdev='cd ~/dev'
-
-# Add bin for user
-export PATH="$HOME/bin:$PATH"
 
 #=================
 # CPP
