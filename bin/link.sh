@@ -65,34 +65,21 @@ print_title() {
 }
 
 loop_links() {
-  for ((i = 0; i < ${#LINKS[@]}; i++))
+  local -n arr=$1
+  for item in "${arr[@]}"
   do
-    create_link "${LINKS[$i]}"
-  done
-}
-
-loop_linux_links() {
-  for ((i = 0; i < ${#LINUX_LINKS[@]}; i++))
-  do
-    create_link "${LINUX_LINKS[$i]}"
-  done
-}
-
-loop_mac_links() {
-  for ((i = 0; i < ${#MAC_LINKS[@]}; i++))
-  do
-    create_link "${MAC_LINKS[$i]}"
+    create_link "$item"
   done
 }
 
 # Create symlinks, overwriting current
 print_title "creating directories and symlinks..."
 mkdir -p "$HOME/.config"
-loop_links
+loop_links LINKS
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  loop_mac_links
+  loop_links MAC_LINKS
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  loop_linux_links
+  loop_links LINUX_LINKS
 fi
 
