@@ -112,6 +112,7 @@ alias tmk='tmux kill-session -t'
 alias tml='tmux ls'
 alias tmka="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
 alias tmuxconf='nvim ~/.tmux.conf'
+alias hyprconf='nvim ~/.config/hypr/hyprland.conf'
 alias bs='source ~/.bash_profile'
 alias bashrc='nvim ~/.bashrc'
 alias vimrc='nvim ~/.config/nvim/init.vim'
