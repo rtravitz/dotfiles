@@ -9,6 +9,11 @@
 - sudo systemctl enable bluetooth.service
 - download 1password for linux and follow the install steps: https://support.1password.com/install-linux/#get-1password-for-linux
 - systemctl status systemd-networkd.service, systemd-resolved.service, and dhcpcd.service and disable if enabled. Then systemctl enable --now NetworkManager.service.
+- uninstall dolphin
+- uninstall kitty
+
+### To update in install
+- Add a yay section for yay, qimgv-git, and nordic-theme
 
 ### Arch Install Config
 - ext4

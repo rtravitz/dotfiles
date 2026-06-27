@@ -7,6 +7,7 @@ install() {
 # Utilities
 install "
   bash-completion 
+  base-devel
   bat 
   clang 
   fd 
@@ -29,12 +30,19 @@ install "
   ghostty
   spotify-launcher
   flameshot
+  nwg-look
 "
 
 # Hyprland
 install " 
   hyprpaper 
   hyprlock
+"
+
+# Files
+install "
+  thunar
+  tumbler
 "
 
 # Bluetooth
