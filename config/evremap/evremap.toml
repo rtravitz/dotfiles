@@ -1,0 +1,13 @@
+device_name = "Logitech G915 TKL"
+
+[[remap]]
+input = ["KEY_CAPSLOCK"]
+output = ["KEY_ESC"]
+
+[[remap]]
+input = ["KEY_LEFTMETA"]
+output = ["KEY_LEFTALT"]
+
+[[remap]]
+input = ["KEY_LEFTALT"]
+output = ["KEY_LEFTMETA"]
