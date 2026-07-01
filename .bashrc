@@ -63,8 +63,9 @@ fi
 # General
 #=================
 
-# Add bin for user
+# Add various bins
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # ASDF
 export ASDF_DATA_DIR="$HOME/.asdf"
@@ -162,4 +163,3 @@ export BAT_THEME=TwoDark
 # Secrets
 #=================
 [ -f ~/.secrets ] && source ~/.secrets
-
