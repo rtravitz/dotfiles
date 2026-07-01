@@ -1,4 +1,3 @@
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local function on_attach(client, bufnr)
   local function nmap(key, action)
     local opts = { noremap=true, silent=true, buffer = bufnr }
@@ -27,36 +26,35 @@ local function on_attach(client, bufnr)
   nmap('<space>dk', vim.diagnostic.goto_prev)
 end
 
-local default_config_servers = { 'gopls', 'ts_ls', 'clangd', 'bashls' }
-
-for _, server in ipairs(default_config_servers) do
-  vim.lsp.config(server, {
-    capabilities = capabilities,
+local function setup_server(server, override_opts)
+  local opts = {
+    capabilities = require('cmp_nvim_lsp').default_capabilities(),
     on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  })
+  }
 
+  if override_opts ~= nil then
+    for key, value in pairs(override_opts) do
+      opts[key] = value
+    end
+  end
+
+  vim.lsp.config(server, opts)
   vim.lsp.enable(server)
 end
 
-vim.lsp.config('eslint', {
-  capabilities = capabilities,
+setup_server('gopls')
+setup_server('clangd')
+setup_server('bashls')
+setup_server('denols', { root_markers = {'deno.json', 'deno.jsonc'} })
+setup_server('ts_ls', { root_markers = {'package.json'} })
+setup_server('eslint', {
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
-    local opts = { noremap=true, silent=true, buffer = bufnr }
-    vim.keymap.set('n', '<space>af', '<cmd>EslintFixAll<cr>', opts)
+    local keymap_opts = { noremap=true, silent=true, buffer = bufnr }
+    vim.keymap.set('n', '<space>af', '<cmd>EslintFixAll<cr>', keymap_opts)
   end,
-  flags = {
-    debounce_text_changes = 150,
-  }
 })
-vim.lsp.enable('eslint')
-
-vim.lsp.config('lua_ls', {
-  capabilities = capabilities,
-  on_attach = on_attach,
+setup_server('lua_ls', {
   settings = {
     Lua = {
       runtime = {
@@ -78,12 +76,3 @@ vim.lsp.config('lua_ls', {
     },
   },
 })
-vim.lsp.enable('lua_ls')
-
---vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  --vim.lsp.diagnostic.on_publish_diagnostics, {
-    --virtual_text = false,
-    --underline = true,
-    --signs = true,
-  --}
---)
