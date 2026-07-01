@@ -103,8 +103,10 @@ window#waybar {
   color: @icon-hover;
 }
 
+#custom-power {
+  margin-right: 5px;
+}
+
 tooltip {
   background: @background;
-  /*color: @icon;*/
-  /*margin-top: 10px;*/
 }
