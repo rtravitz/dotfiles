@@ -1,5 +1,6 @@
 @define-color background #18262e;
-@define-color blue #6699cc;
+@define-color blue #33ccff;
+@define-color green #00ff99;
 @define-color red  #ec5f67;
 @define-color yellow #fac863;
 @define-color text  #d8dee9;
@@ -16,19 +17,18 @@
 
 window {
   all:unset;
-  padding: 20px;
+  background: linear-gradient(to bottom right, #33ccff, #00ff99);
   border-radius: 20px;
-  background-color: alpha(@background,.95);
 }
 
 #inner-box {
-  margin: 2px;
-  padding: 5px
-  border: none;
 }
 
 #outer-box {    
-  border: none;
+  background-color: @background;
+  border-radius: 20px;
+  margin: 2px;
+  transition: 0.5s ease-in-out;
 }
 
 #scroll {
@@ -53,7 +53,7 @@ window {
 
 #input image {
   border: none;
-  color: @red;
+  color: @green;
   padding-right:10px;
 }
 
@@ -76,7 +76,7 @@ window {
 }
 
 #entry {
-  border: none;
+  border: solid 2px transparent;
   margin: 5px;
   padding: 10px;
 }
@@ -87,14 +87,14 @@ window {
 }
 
 #entry:selected {
-  box-shadow: 1px 1px 5px rgba(255,255,255, .03);
-  border: none;
+  border: solid 2px white;
+  box-sizing: border-box;
   border-radius: 20px;
   background-color: transparent;
 }
 
 #entry:selected #text {
-  color: @blue;
+  color: #33ccff;
 }
 
 #entry:drop(active) {
