@@ -22,6 +22,9 @@ install "
   tmux 
   unzip 
   which
+  man-db
+  man-pages
+  tailscaled
 "
 
 # Apps
@@ -72,6 +75,8 @@ install "
 # Network
 install " 
   networkmanager
+  wireguard-tools 
+  systemd-resolvconf
 "
 
 # Waybar
