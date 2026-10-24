@@ -95,6 +95,10 @@ hl.config({
         layout = "dwindle",
     },
 
+    ecosystem = {
+      no_donation_nag = true,
+    },
+
     decoration = {
         rounding       = 10,
         rounding_power = 2,
@@ -120,6 +124,10 @@ hl.config({
 
     animations = {
         enabled = false,
+    },
+
+    cursor = {
+      no_warps = true,
     },
 })
 
@@ -214,7 +222,7 @@ hl.config({
         kb_options = "",
         kb_rules   = "",
 
-        follow_mouse = 1,
+        follow_mouse = 0,
 
         sensitivity = -0.5, -- -1.0 - 1.0, 0 means no modification.
 
